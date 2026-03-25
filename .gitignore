@@ -31,3 +31,19 @@ server/
 src/pages/*
 !src/pages/Index.tsx
 !src/pages/NotFound.tsx
+
+# Ignore non-Home components (excluding core UI and Home-specific ones)
+# Note: Keep common UI components for now to avoid breaking the build
+# src/components/*
+# !src/components/SectionReveal.tsx
+# !src/components/RotatingBadge.tsx
+# !src/components/Navbar.tsx
+# !src/components/Footer.tsx
+# !src/components/MagneticButton.tsx
+# !src/components/Testimonials.tsx
+# !src/components/ui/
+
+# Ignore non-Home assets
+src/assets/*
+!src/assets/backgroundVideo.mp4
+!src/assets/logo.png

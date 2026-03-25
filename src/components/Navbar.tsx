@@ -302,6 +302,8 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Notification system disabled for Home Page isolation */}
+      {/* 
       <NotificationDrawer
         isOpen={notiOpen}
         onClose={() => setNotiOpen(false)}
@@ -317,7 +319,8 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
             window.location.href = `/suivi?tab=${tab}&id=${id}`;
           }
         }}
-      />
+      /> 
+      */}
     </>
   );
 };
