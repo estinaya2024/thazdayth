@@ -1,11 +1,9 @@
 /**
  * NAVBAR COMPONENT
- * The main navigation bar that appears on every page.
- * It handles:
- * - Links to all main pages (Home, Process, etc.)
- * - Role-based links (Dashboard for Owners, Tracking for Customers)
- * - Language switching (FR, EN, KAB)
- * - Real-time notification polling (checks for new alerts every 30s)
+ * Main navigation bar present on every page.
+ * Current Version: Static for the first-semester submission.
+ * Handles links to created pages (Home, Process, Dishes, etc.)
+ * and the implementation of multi-language support (i18n).
  */
 
 import { useState, useEffect } from "react";
@@ -19,21 +17,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { useAuth } from "@/Context/AuthContext";
 import { LogOut, Bell } from "lucide-react";
-import NotificationDrawer from "./NotificationDrawer";
-import API_URL from "@/config";
 
-// Configuration for site-wide links (Simplified for Home Page only)
+// MOCKED AUTH FOR CLEANUP (Teacher-only view)
+const useAuth = () => ({
+  isAuthenticated: false,
+  user: null,
+  token: null,
+  logout: () => {},
+});
+
+// Configuration for site-wide links
 const getLeftLinks = (t: any) => [
   { to: "/", label: t("nav.home") },
-  // { to: "/processus", label: t("nav.process") },
-  // { to: "/plats", label: t("nav.dishes") },
+  { to: "/processus", label: t("nav.process") },
+  { to: "/plats", label: t("nav.dishes") },
 ];
 
 const getRightLinks = (t: any) => [
-  // { to: "/region", label: t("nav.region") },
-  // { to: "/a-propos", label: t("nav.about") },
+  { to: "/region", label: t("nav.region") },
+  { to: "/a-propos", label: t("nav.about") },
 ];
 
 const languages = [
@@ -47,28 +50,7 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
   const { isAuthenticated, user, token, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false); // Controls background transparency on scroll
   const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
-  const [notiOpen, setNotiOpen] = useState(false); // Notification sidebar state
-  const [unreadCount, setUnreadCount] = useState(0); // Badge number for notifications
   const location = useLocation();
-
-  /**
-   * fetchUnreadCount
-   * Checks the server to see if there are any new unread notifications.
-   */
-  const fetchUnreadCount = async () => {
-    if (!isAuthenticated || !token) return;
-    try {
-      const res = await fetch(`${API_URL}/notifications/unread-count`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setUnreadCount(data.count);
-      }
-    } catch (err) {
-      console.error("Failed to fetch unread count:", err);
-    }
-  };
 
   // Change navbar appearance when user scrolls down
   useEffect(() => {
@@ -77,14 +59,8 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Set up the notification checker (polls every 30 seconds)
-  useEffect(() => {
-    if (isAuthenticated && token) {
-      fetchUnreadCount();
-      const interval = setInterval(fetchUnreadCount, 30000); 
-      return () => clearInterval(interval);
-    }
-  }, [isAuthenticated, token]);
+  // Set up the notification checker (olls every 30 seconds)
+  // Cleanup: Removed notification polling as backend is ignored for this push.
 
   // Close mobile menu when user clicks a link (navigates)
   useEffect(() => setMenuOpen(false), [location]);
@@ -97,8 +73,9 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
     allLinks.push({ to: "/suivi", label: t("nav.tracking") });
   }
 
-  const handleLanguageChange = (code: string) => {
-    i18n.changeLanguage(code);
+  // Language switching function via i18next
+  const handleLanguageChange = (langCode: string) => {
+    i18n.changeLanguage(langCode);
     setMenuOpen(false);
   };
 
@@ -147,27 +124,12 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
             </div>
           </div>
 
-          {/* Right area: Icons (Simplified for Home Page Only) */}
+          {/* Right area: Icons */}
           <div className="flex items-center justify-end gap-4 z-10 flex-1">
-            {/* 
+
             <Link to="/boutique" className="flex items-center gap-2 text-foreground/70 hover:text-primary transition-colors hover:scale-110 duration-200">
               <ShoppingBag className="w-4 h-4 stroke-[2.5]" />
-            </Link> 
-            */}
-
-            {isAuthenticated && (
-              <button
-                onClick={() => setNotiOpen(true)}
-                className="flex items-center gap-2 text-foreground/70 hover:text-primary transition-colors hover:scale-110 duration-200 focus:outline-none relative"
-              >
-                <Bell className="w-4 h-4 stroke-[2.5]" />
-                {unreadCount > 0 && (
-                  <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 bg-red-600 text-white text-[10px] font-bold rounded-full border-2 border-background flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
-                    {unreadCount > 9 ? "9+" : unreadCount}
-                  </span>
-                )}
-              </button>
-            )}
+            </Link>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -190,34 +152,9 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* 
-            {isAuthenticated ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors focus:outline-none">
-                    <User className="w-4 h-4 stroke-[2.2]" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-40">
-                  {user?.role === 'owner' && (
-                    <DropdownMenuItem asChild>
-                      <Link to="/dashboard" className="cursor-pointer font-bold text-primary">Tableau de Bord</Link>
-                    </DropdownMenuItem>
-                  )}
-                  <DropdownMenuItem asChild>
-                    <Link to="/suivi" className="cursor-pointer">{t("nav.my_activities")}</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={logout} className="text-destructive cursor-pointer">
-                    <LogOut className="w-4 h-4 mr-2" /> {t("nav.logout")}
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link to="/connexion" className="hidden lg:flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors">
-                <User className="w-4 h-4 stroke-[2.2]" />
-              </Link>
-            )} 
-            */}
+            <Link to="/connexion" className="hidden lg:flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors">
+              <User className="w-4 h-4 stroke-[2.2]" />
+            </Link>
 
             <button onClick={() => setMenuOpen(true)} className="lg:hidden text-foreground">
               <Menu className="w-5 h-5" />
@@ -229,11 +166,11 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-md flex flex-col"
+            initial={{ x: "100%" }} // The menu slides in from the right
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[60] bg-background lg:hidden pt-24 flex flex-col"
           >
             <div className="flex items-center justify-between px-6 h-14">
               <Link to="/" className="flex items-center gap-2">
@@ -287,40 +224,13 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
                     </button>
                   ))}
                 </div>
-                {isAuthenticated ? (
-                  <div className="flex flex-col items-center gap-4">
-                    {user?.role === 'owner' && (
-                      <Link to="/dashboard" className="text-lg font-bold text-primary">{t("nav.dashboard") || "Dashboard"}</Link>
-                    )}
-                    <button onClick={logout} className="text-lg text-destructive font-medium">{t("nav.logout")}</button>
-                  </div>
-                ) : (
-                  <Link to="/connexion" className="text-lg text-foreground/60">{t("nav.login")}</Link>
-                )}
+                <Link to="/connexion" className="text-lg text-foreground/60">{t("nav.login")}</Link>
               </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Notification system disabled for Home Page isolation */}
-      {/* 
-      <NotificationDrawer
-        isOpen={notiOpen}
-        onClose={() => setNotiOpen(false)}
-        onRefresh={fetchUnreadCount}
-        unreadCount={unreadCount}
-        setUnreadCount={setUnreadCount}
-        onNotificationClick={(type, id) => {
-          if (user?.role === 'owner') {
-            const tab = type === 'order' ? 'orders' : 'pressing';
-            window.location.href = `/dashboard?tab=${tab}&id=${id}`;
-          } else {
-            const tab = type === 'order' ? 'orders' : 'pressing';
-            window.location.href = `/suivi?tab=${tab}&id=${id}`;
-          }
-        }}
-      /> 
-      */}
+      {/* Cleanup: NotificationDrawer removed for this push */}
     </>
   );
 };

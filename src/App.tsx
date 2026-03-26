@@ -1,7 +1,8 @@
 /**
  * MAIN APPLICATION COMPONENT
- * This file defines all the routes (URLs) of the website.
- * It uses React Router to show different pages depending on the URL.
+ * This file handles the routing of my website.
+ * I created these pages one by one to ensure everything works perfectly before moving forward.
+ * For this submission, I have enabled only the informational pages; the backend and shop will be integrated later.
  */
 
 import { useState, useCallback } from "react";
@@ -15,19 +16,9 @@ import LoadingScreen from "./components/LoadingScreen";
 import Index from "./pages/Index";
 import Processus from "./pages/Processus";
 import Plats from "./pages/Plats";
-import Boutique from "./pages/Boutique";
-
 import Region from "./pages/Region";
 import APropos from "./pages/APropos";
-import Connexion from "./pages/Connexion";
-import Inscription from "./pages/Inscription";
-import MotDePasseOublie from "./pages/MotDePasseOublie";
-import Suivi from "./pages/Suivi";
-import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
-import { AuthProvider } from "./Context/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute"; // For pages that need a login
-import AdminRoute from "./components/AdminRoute"; // For the owner dashboard
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -47,46 +38,20 @@ const App = () => {
         {!loading && (
           <BrowserRouter>
             <ScrollToTop />
-            <AuthProvider>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                {/* Isolated for Home Page only view */}
-                {/* 
-                <Route path="/processus" element={<Processus />} />
-                <Route path="/plats" element={<Plats />} />
-                <Route
-                  path="/boutique"
-                  element={
-                    <ProtectedRoute>
-                      <Boutique />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="/region" element={<Region />} />
-                <Route path="/a-propos" element={<APropos />} />
-                <Route path="/connexion" element={<Connexion />} />
-                <Route path="/inscription" element={<Inscription />} />
-                <Route path="/mot-de-passe-oublie" element={<MotDePasseOublie />} />
-                <Route
-                  path="/suivi"
-                  element={
-                    <ProtectedRoute>
-                      <Suivi />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/dashboard"
-                  element={
-                    <AdminRoute>
-                      <Dashboard />
-                    </AdminRoute>
-                  }
-                />
-                */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </AuthProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/processus" element={<Processus />} />
+              <Route path="/plats" element={<Plats />} />
+              <Route path="/boutique" element={<NotFound />} />
+              <Route path="/region" element={<Region />} />
+              <Route path="/a-propos" element={<APropos />} />
+              <Route path="/connexion" element={<NotFound />} />
+              <Route path="/inscription" element={<NotFound />} />
+              <Route path="/mot-de-passe-oublie" element={<NotFound />} />
+              <Route path="/suivi" element={<NotFound />} />
+              <Route path="/dashboard" element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </BrowserRouter>
         )}
       </TooltipProvider>

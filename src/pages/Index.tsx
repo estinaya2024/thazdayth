@@ -1,7 +1,7 @@
 /**
- * LANDING PAGE (INDEX)
- * The main entry point of the website.
- * Features a video hero, storytelling sections, and a newsletter signup.
+ * PAGE D'ACCUEIL (INDEX)
+ * C'est la première page que j'ai conçue pour le projet.
+ * Elle présente l'histoire et les valeurs de l'huilerie avec un design fluide.
  */
 
 import { motion } from "framer-motion";
@@ -25,7 +25,10 @@ const getValues = (t: any) => [
 ];
 
 const Index = () => {
+  // Hook i18n pour la gestion multi-langue (FR, EN, KAB)
   const { t } = useTranslation();
+  
+  // Fetching text data from translation JSON files
   const values = getValues(t);
 
   // We use "returnObjects: true" to fetch arrays directly from our translation files
@@ -39,12 +42,12 @@ const Index = () => {
         className="!bg-background/100 backdrop-blur-sm h-[52px] lg:h-[60px]"
       />
 
-      {/* Hero */}
+      {/* Hero Section: Using Framer Motion for the entrance animation */}
       <section className="relative h-screen overflow-hidden">
         <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          initial={{ scale: 1.1 }} // Starting state (zoomed in)
+          animate={{ scale: 1 }}   // Final state (normal size)
+          transition={{ duration: 1.5, ease: "easeOut" }} // Transition duration and easing
           className="absolute inset-0"
         >
           <video
@@ -97,25 +100,22 @@ const Index = () => {
 
       {/* Notre Histoire */}
       <section className="py-20 lg:py-32 px-6 lg:px-10 max-w-7xl mx-auto">
+        {/* Section de présentation : J'utilise mon composant SectionReveal pour animer l'apparition au scroll */}
         <SectionReveal>
-          <span className="inline-block border border-foreground/20 rounded-full px-4 py-1.5 text-xs tracking-widest uppercase text-muted-foreground mb-10">
-            {t("home.story.badge")}
-          </span>
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/80 animate-pulse">
+              {t("home.story.badge")}
+            </span>
+            <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] text-balance uppercase">
+              {t("home.story.title")}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl font-medium">
+              {t("home.story.desc")}
+            </p>
+          </div>
         </SectionReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          <SectionReveal>
-            <p className="text-2xl md:text-3xl lg:text-4xl leading-snug">
-              <span className="font-bold">{t("home.story.text1_bold")}</span>{" "}
-              <span className="text-muted-foreground font-normal">
-                {t("home.story.text1")}
-              </span>
-            </p>
-            <p className="text-lg text-muted-foreground mt-8 leading-relaxed">
-              {t("home.story.text2")}
-            </p>
-          </SectionReveal>
-
           <SectionReveal delay={0.2}>
             <div className="overflow-hidden rounded-2xl">
               <motion.img
