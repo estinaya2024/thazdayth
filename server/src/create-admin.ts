@@ -19,18 +19,6 @@ async function createAdmin() {
             await existingAdmin.save();
             console.log('✅ Admin promoted successfully.');
         } else {
-            const hashedPassword = await bcrypt.hash('admin123', 10);
-            await User.create({
-                first_name: 'Admin',
-                last_name: 'Tazdayth',
-                email: adminEmail,
-                phone: '0555555555',
-                password: hashedPassword,
-                role: 'owner'
-            });
-            console.log('✅ Admin user created successfully!');
-            console.log('📧 Email: admin@tazdayth.com');
-            console.log('🔑 Password: admin123');
         }
 
         await mongoose.disconnect();

@@ -20,6 +20,8 @@ import {
 import { LogOut, Bell } from "lucide-react";
 
 import { useAuth } from "@/Context/AuthContext";
+import NotificationDrawer from "./NotificationDrawer";
+import API_URL from "@/config";
 
 // Configuration for site-wide links
 const getLeftLinks = (t: any) => [
@@ -53,8 +55,31 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Set up the notification checker (olls every 30 seconds)
-  // Cleanup: Removed notification polling as backend is ignored for this push.
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+
+  // Set up the notification checker (polls every 30 seconds)
+  useEffect(() => {
+    if (!isAuthenticated || !token) return;
+
+    const fetchUnreadCount = async () => {
+      try {
+        const res = await fetch(`${API_URL}/notifications/unread-count`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setUnreadCount(data.count);
+        }
+      } catch (err) {
+        console.error("Failed to fetch unread count:", err);
+      }
+    };
+
+    fetchUnreadCount();
+    const interval = setInterval(fetchUnreadCount, 30000);
+    return () => clearInterval(interval);
+  }, [isAuthenticated, token]);
 
   // Close mobile menu when user clicks a link (navigates)
   useEffect(() => setMenuOpen(false), [location]);
@@ -127,6 +152,20 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
             <Link to="/boutique" className="flex items-center gap-2 text-foreground/70 hover:text-primary transition-colors hover:scale-110 duration-200">
               <ShoppingBag className="w-4 h-4 stroke-[2.5]" />
             </Link>
+
+            {isAuthenticated && (
+              <button
+                onClick={() => setIsNotificationOpen(true)}
+                className="relative flex items-center gap-2 text-foreground/70 hover:text-primary transition-colors hover:scale-110 duration-200 focus:outline-none"
+              >
+                <Bell className="w-4 h-4 stroke-[2.2]" />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-primary text-[8px] font-bold text-white flex items-center justify-center rounded-full border-2 border-background animate-in fade-in zoom-in duration-300">
+                    {unreadCount > 9 ? "9+" : unreadCount}
+                  </span>
+                )}
+              </button>
+            )}
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -276,7 +315,13 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Cleanup: NotificationDrawer removed for this push */}
+      <NotificationDrawer
+        isOpen={isNotificationOpen}
+        onClose={() => setIsNotificationOpen(false)}
+        unreadCount={unreadCount}
+        setUnreadCount={setUnreadCount}
+        onNotificationClick={onNotificationClick}
+      />
     </>
   );
 };
