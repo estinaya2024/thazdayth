@@ -2,7 +2,7 @@
  * AUTH CONTEXT
  * This is the heart of the application's security.
  * It manages the logged-in user's state, their authentication token,
- * and provides functions for login, registration, and logout.
+ * and provides functions for login, registration, logout, and password recovery.
  */
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
@@ -32,6 +32,8 @@ interface AuthContextType {
         password: string;
     }) => Promise<void>;
     googleLogin: (credential: string) => Promise<void>;
+    forgotPassword: (email: string) => Promise<{ message: string }>;
+    resetPassword: (data: { email: string; code: string; newPassword: string }) => Promise<{ message: string }>;
     logout: () => void;
 }
 
@@ -78,7 +80,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setToken(data.token);
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        // Keep legacy key for any remaining checks
         localStorage.setItem('isAuthenticated', 'true');
     }, []);
 
@@ -143,6 +144,40 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.setItem('isAuthenticated', 'true');
     }, []);
 
+    const forgotPassword = useCallback(async (email: string) => {
+        let res: Response;
+        try {
+            res = await fetch(`${API_URL}/auth/forgot-password`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+        } catch {
+            throw new Error('Erreur de connexion au serveur.');
+        }
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Erreur lors de la demande.');
+        return data;
+    }, []);
+
+    const resetPassword = useCallback(async (data: { email: string; code: string; newPassword: string }) => {
+        let res: Response;
+        try {
+            res = await fetch(`${API_URL}/auth/reset-password`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+        } catch {
+            throw new Error('Erreur de connexion au serveur.');
+        }
+
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Code invalide ou expiré.');
+        return json;
+    }, []);
+
     const logout = useCallback(() => {
         setUser(null);
         setToken(null);
@@ -161,6 +196,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 login,
                 register,
                 googleLogin,
+                forgotPassword,
+                resetPassword,
                 logout,
             }}
         >
