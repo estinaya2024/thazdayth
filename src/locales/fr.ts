@@ -9,6 +9,7 @@ export const fr = {
         about: "À Propos",
         login: "Connexion",
         tracking: "Suivi",
+        dashboard: "Tableau de bord",
         my_activities: "Mes activités",
         logout: "Déconnexion",
     },

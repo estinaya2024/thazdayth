@@ -19,13 +19,7 @@ import {
 } from "./ui/dropdown-menu";
 import { LogOut, Bell } from "lucide-react";
 
-// MOCKED AUTH FOR CLEANUP (Teacher-only view)
-const useAuth = () => ({
-  isAuthenticated: false,
-  user: null,
-  token: null,
-  logout: () => {},
-});
+import { useAuth } from "@/Context/AuthContext";
 
 // Configuration for site-wide links
 const getLeftLinks = (t: any) => [
@@ -70,6 +64,9 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
   const rightLinks = getRightLinks(t);
   const allLinks = [...leftLinks, ...rightLinks];
   if (isAuthenticated) {
+    if (user?.role === 'owner') {
+      allLinks.push({ to: "/dashboard", label: t("nav.dashboard", "Dashboard") });
+    }
     allLinks.push({ to: "/suivi", label: t("nav.tracking") });
   }
 
@@ -152,9 +149,39 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link to="/connexion" className="hidden lg:flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors">
-              <User className="w-4 h-4 stroke-[2.2]" />
-            </Link>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="hidden lg:flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors focus:outline-none">
+                    <User className="w-4 h-4 stroke-[2.2]" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  {user?.role === 'owner' && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/dashboard" className="cursor-pointer w-full flex items-center">
+                        <User className="w-4 h-4 mr-2" />
+                        {t("nav.dashboard", "Tableau de bord")}
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem asChild>
+                    <Link to="/suivi" className="cursor-pointer w-full flex items-center">
+                      <ShoppingBag className="w-4 h-4 mr-2" />
+                      {t("nav.tracking", "Suivre ma commande")}
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={logout} className="cursor-pointer text-destructive focus:text-destructive flex items-center">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    <span>{t("nav.logout", "Déconnexion")}</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/connexion" className="hidden lg:flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors">
+                <User className="w-4 h-4 stroke-[2.2]" />
+              </Link>
+            )}
 
             <button onClick={() => setMenuOpen(true)} className="lg:hidden text-foreground">
               <Menu className="w-5 h-5" />
@@ -224,7 +251,26 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
                     </button>
                   ))}
                 </div>
-                <Link to="/connexion" className="text-lg text-foreground/60">{t("nav.login")}</Link>
+                {isAuthenticated ? (
+                  <div className="flex flex-col items-center gap-6 pt-4 border-t w-full border-border">
+                    {user?.role === 'owner' && (
+                      <Link to="/dashboard" className="text-xl font-bold flex items-center gap-2 text-primary">
+                        <User className="w-5 h-5" />
+                        {t("nav.dashboard", "Dashboard")}
+                      </Link>
+                    )}
+                    <Link to="/suivi" className="text-xl font-bold flex items-center gap-2 text-foreground">
+                      <ShoppingBag className="w-5 h-5" />
+                      {t("nav.tracking", "Suivi")}
+                    </Link>
+                    <button onClick={() => { logout(); setMenuOpen(false); }} className="text-xl font-bold text-red-500 flex items-center gap-2">
+                      <LogOut className="w-5 h-5" />
+                      {t("nav.logout", "Déconnexion")}
+                    </button>
+                  </div>
+                ) : (
+                  <Link to="/connexion" className="text-lg text-foreground/60">{t("nav.login")}</Link>
+                )}
               </motion.div>
             </div>
           </motion.div>
