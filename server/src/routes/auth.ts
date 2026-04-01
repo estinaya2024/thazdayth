@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { body, validationResult } from 'express-validator';
 import { OAuth2Client } from 'google-auth-library';
 import { User } from '../models/User';
-import { sendResetEmail } from '../utils/sendEmail';
+import { sendResetEmail, sendWelcomeEmail } from '../utils/sendEmail';
 
 const router = Router();
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -44,6 +44,9 @@ router.post(
                 password: hashed,
                 role: 'customer', // Always 'customer' to prevent privilege escalation
             });
+
+            // Send Welcome Email (non-blocking)
+            sendWelcomeEmail(email, first_name).catch(err => console.error('[AUTH] Welcome email fail:', err));
 
             const token = jwt.sign(
                 { id: user._id, role: user.role, is_subscribed: user.is_subscribed },

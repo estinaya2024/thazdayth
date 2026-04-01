@@ -88,12 +88,7 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
   const leftLinks = getLeftLinks(t);
   const rightLinks = getRightLinks(t);
   const allLinks = [...leftLinks, ...rightLinks];
-  if (isAuthenticated) {
-    if (user?.role === 'owner') {
-      allLinks.push({ to: "/dashboard", label: t("nav.dashboard", "Dashboard") });
-    }
-    allLinks.push({ to: "/suivi", label: t("nav.tracking") });
-  }
+  // Links are now exclusively in the User dropdown for a cleaner main header
 
   // Language switching function via i18next
   const handleLanguageChange = (langCode: string) => {
@@ -292,15 +287,10 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
                 </div>
                 {isAuthenticated ? (
                   <div className="flex flex-col items-center gap-6 pt-4 border-t w-full border-border">
-                    {user?.role === 'owner' && (
-                      <Link to="/dashboard" className="text-xl font-bold flex items-center gap-2 text-primary">
-                        <User className="w-5 h-5" />
-                        {t("nav.dashboard", "Dashboard")}
-                      </Link>
-                    )}
+                    {/* Dashboard is now exclusively accessed via the connexion icon/dropdown */}
                     <Link to="/suivi" className="text-xl font-bold flex items-center gap-2 text-foreground">
-                      <ShoppingBag className="w-5 h-5" />
-                      {t("nav.tracking", "Suivi")}
+                        <ShoppingBag className="w-5 h-5" />
+                        {t("nav.tracking", "Suivi")}
                     </Link>
                     <button onClick={() => { logout(); setMenuOpen(false); }} className="text-xl font-bold text-red-500 flex items-center gap-2">
                       <LogOut className="w-5 h-5" />

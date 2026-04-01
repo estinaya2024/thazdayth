@@ -175,6 +175,48 @@ export const sendPressingConfirmationEmail = async (email: string, pressingData:
     }
 };
 
+export const sendWelcomeEmail = async (email: string, name: string) => {
+    console.log(`[MAIL] Envoi de l'email de bienvenue à: ${email}...`);
+    const transport = await getTransporter();
+
+    const mailOptions = {
+        from: '"TAZDAYTH" <welcome@tazdayth.com>',
+        to: email,
+        subject: 'Bienvenue chez TAZDAYTH ! 🌿',
+        html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h1 style="color: #4A5568;">Bienvenue, ${name} !</h1>
+                </div>
+                <p>Nous sommes ravis de vous compter parmi nous chez <strong>TAZDAYTH</strong>, votre huilerie traditionnelle de confiance.</p>
+                <div style="background-color: #F7FAFC; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #728056;">
+                    <p style="margin: 0;">Votre compte est désormais actif. Vous pouvez dès à présent :</p>
+                    <ul style="margin-top: 10px; color: #4A5568;">
+                        <li>Commander nos huiles d'olive de qualité</li>
+                        <li>Prendre rendez-vous pour le pressage de vos olives</li>
+                        <li>Suivre l'avancement de vos demandes en temps réel</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="${process.env.FRONTEND_URL || 'http://localhost:5173'}/boutique" style="background-color: #728056; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">Découvrir la boutique</a>
+                </div>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+                <p style="text-align: center; font-size: 0.9em; color: #718096;">
+                    L'équipe TAZDAYTH<br/>
+                    <em>L'excellence de l'olivier, de la terre à votre table.</em>
+                </p>
+            </div>
+        `,
+    };
+
+    try {
+        const info = await transport.sendMail(mailOptions);
+        logEmailSent(email, info);
+    } catch (error: any) {
+        console.error(`[MAIL] Échec d'envoi email bienvenue:`, error.message);
+    }
+};
+
 const logEmailSent = (email: string, info: any) => {
     const previewUrl = nodemailer.getTestMessageUrl(info);
     if (previewUrl) {
