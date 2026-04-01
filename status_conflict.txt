@@ -1,0 +1,38 @@
+﻿interactive rebase in progress; onto 038f85d
+Last commands done (8 commands done):
+   pick cd18822 # fix: restored AdminRoute.tsx and maintained debug logs
+   pick fb7a4b5 # final: summarized fixes for dashboard and auth system; pushing to main repo
+  (see more in file .git/rebase-merge/done)
+Next commands to do (4 remaining commands):
+   pick 6694ca0 # housekeeping: cleaned git index and applied standard gitignore to exclude node_modules and build artifacts
+   pick 585161c # feat: restore notification system and final production readiness
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'main' on '038f85d'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+	both added:      server/src/create-admin.ts
+	both added:      server/src/routes/auth.ts
+	both added:      server/src/routes/orders.js
+	both added:      server/src/routes/pressing.js
+	both added:      server/src/utils/sendEmail.ts
+	both modified:   src/components/Navbar.tsx
+	both added:      src/pages/Connexion.tsx
+	both added:      src/pages/Dashboard.tsx
+	both added:      src/pages/Inscription.tsx
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	conflict.txt
+	diff.txt
+	diff_cached.txt
+	diff_utf8.txt
+	status.txt
+	status_conflict.txt
+	status_utf8.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")

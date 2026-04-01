@@ -1,0 +1,37 @@
+﻿interactive rebase in progress; onto 038f85d
+Last commands done (2 commands done):
+   pick 9c2780d # docs: Add exhaustive 1:1 educational documentation for UI primitives, Olive Exchange module, and Root configs
+   pick 9946a3a # security: added .env and sensitive files to .gitignore
+Next commands to do (10 remaining commands):
+   pick e1a5d32 # debug: added logs to AdminRoute to identify dashboard access issues
+   pick d6ba208 # feat: added forgotPassword and resetPassword methods to AuthContext
+  (use "git rebase --edit-todo" to view and edit)
+You are currently editing a commit while rebasing branch 'main' on '038f85d'.
+  (use "git commit --amend" to amend the current commit)
+  (use "git rebase --continue" once you are satisfied with your changes)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   package-lock.json
+	modified:   package.json
+	new file:   server/compile_errors.txt
+	new file:   server/src/controllers/NotificationController.ts
+	modified:   server/src/routes/auth.ts
+	modified:   server/src/routes/orders.js
+	modified:   server/src/routes/pressing.js
+	new file:   server/src/test-email.ts
+	modified:   server/src/utils/sendEmail.ts
+	modified:   src/components/ui/button.tsx
+	modified:   src/components/ui/toast.tsx
+	modified:   src/components/ui/toaster.tsx
+	modified:   src/components/ui/tooltip.tsx
+	modified:   src/pages/Connexion.tsx
+	modified:   src/pages/Inscription.tsx
+	modified:   vite.config.ts
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	diff.txt
+	status.txt
+	status_utf8.txt
+

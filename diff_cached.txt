@@ -1,0 +1,2538 @@
+﻿diff --git a/package-lock.json b/package-lock.json
+index 69f383f..e54d9b8 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1,11 +1,11 @@
+ {
+-  "name": "vite_react_shadcn_ts",
++  "name": "thazdayth",
+   "version": "0.0.0",
+   "lockfileVersion": 3,
+   "requires": true,
+   "packages": {
+     "": {
+-      "name": "vite_react_shadcn_ts",
++      "name": "thazdayth",
+       "version": "0.0.0",
+       "dependencies": {
+         "@hookform/resolvers": "^3.10.0",
+@@ -71,6 +71,7 @@
+         "@types/node": "^22.16.5",
+         "@types/react": "^18.3.23",
+         "@types/react-dom": "^18.3.7",
++        "@vitejs/plugin-basic-ssl": "^2.3.0",
+         "@vitejs/plugin-react-swc": "^3.11.0",
+         "autoprefixer": "^10.4.21",
+         "concurrently": "^9.2.1",
+@@ -98,6 +99,7 @@
+       "version": "5.2.0",
+       "resolved": "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz",
+       "integrity": "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=10"
+@@ -106,33 +108,6 @@
+         "url": "https://github.com/sponsors/sindresorhus"
+       }
+     },
+-    "node_modules/@babel/code-frame": {
+-      "version": "7.29.0",
+-      "resolved": "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.29.0.tgz",
+-      "integrity": "sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "dependencies": {
+-        "@babel/helper-validator-identifier": "^7.28.5",
+-        "js-tokens": "^4.0.0",
+-        "picocolors": "^1.1.1"
+-      },
+-      "engines": {
+-        "node": ">=6.9.0"
+-      }
+-    },
+-    "node_modules/@babel/helper-validator-identifier": {
+-      "version": "7.28.5",
+-      "resolved": "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.28.5.tgz",
+-      "integrity": "sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "engines": {
+-        "node": ">=6.9.0"
+-      }
+-    },
+     "node_modules/@babel/runtime": {
+       "version": "7.28.6",
+       "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.6.tgz",
+@@ -804,6 +779,7 @@
+       "version": "8.0.2",
+       "resolved": "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz",
+       "integrity": "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "string-width": "^5.1.2",
+@@ -821,6 +797,7 @@
+       "version": "0.3.5",
+       "resolved": "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.5.tgz",
+       "integrity": "sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@jridgewell/set-array": "^1.2.1",
+@@ -835,6 +812,7 @@
+       "version": "3.1.2",
+       "resolved": "https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz",
+       "integrity": "sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=6.0.0"
+@@ -844,6 +822,7 @@
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/@jridgewell/set-array/-/set-array-1.2.1.tgz",
+       "integrity": "sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=6.0.0"
+@@ -853,12 +832,14 @@
+       "version": "1.5.5",
+       "resolved": "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz",
+       "integrity": "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/@jridgewell/trace-mapping": {
+       "version": "0.3.25",
+       "resolved": "https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.25.tgz",
+       "integrity": "sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@jridgewell/resolve-uri": "^3.1.0",
+@@ -869,6 +850,7 @@
+       "version": "2.1.5",
+       "resolved": "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz",
+       "integrity": "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@nodelib/fs.stat": "2.0.5",
+@@ -882,6 +864,7 @@
+       "version": "2.0.5",
+       "resolved": "https://registry.npmjs.org/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz",
+       "integrity": "sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">= 8"
+@@ -891,6 +874,7 @@
+       "version": "1.2.8",
+       "resolved": "https://registry.npmjs.org/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz",
+       "integrity": "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@nodelib/fs.scandir": "2.1.5",
+@@ -904,6 +888,7 @@
+       "version": "0.11.0",
+       "resolved": "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz",
+       "integrity": "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==",
++      "dev": true,
+       "license": "MIT",
+       "optional": true,
+       "engines": {
+@@ -2795,46 +2780,6 @@
+         "react": "^18 || ^19"
+       }
+     },
+-    "node_modules/@testing-library/dom": {
+-      "version": "10.4.1",
+-      "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-10.4.1.tgz",
+-      "integrity": "sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "dependencies": {
+-        "@babel/code-frame": "^7.10.4",
+-        "@babel/runtime": "^7.12.5",
+-        "@types/aria-query": "^5.0.1",
+-        "aria-query": "5.3.0",
+-        "dom-accessibility-api": "^0.5.9",
+-        "lz-string": "^1.5.0",
+-        "picocolors": "1.1.1",
+-        "pretty-format": "^27.0.2"
+-      },
+-      "engines": {
+-        "node": ">=18"
+-      }
+-    },
+-    "node_modules/@testing-library/dom/node_modules/aria-query": {
+-      "version": "5.3.0",
+-      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.0.tgz",
+-      "integrity": "sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==",
+-      "dev": true,
+-      "license": "Apache-2.0",
+-      "peer": true,
+-      "dependencies": {
+-        "dequal": "^2.0.3"
+-      }
+-    },
+-    "node_modules/@testing-library/dom/node_modules/dom-accessibility-api": {
+-      "version": "0.5.16",
+-      "resolved": "https://registry.npmjs.org/dom-accessibility-api/-/dom-accessibility-api-0.5.16.tgz",
+-      "integrity": "sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true
+-    },
+     "node_modules/@testing-library/jest-dom": {
+       "version": "6.9.1",
+       "resolved": "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-6.9.1.tgz",
+@@ -2893,14 +2838,6 @@
+         "node": ">= 10"
+       }
+     },
+-    "node_modules/@types/aria-query": {
+-      "version": "5.0.4",
+-      "resolved": "https://registry.npmjs.org/@types/aria-query/-/aria-query-5.0.4.tgz",
+-      "integrity": "sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true
+-    },
+     "node_modules/@types/chai": {
+       "version": "5.2.3",
+       "resolved": "https://registry.npmjs.org/@types/chai/-/chai-5.2.3.tgz",
+@@ -3010,14 +2947,14 @@
+       "version": "15.7.13",
+       "resolved": "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.13.tgz",
+       "integrity": "sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==",
+-      "devOptional": true,
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/@types/react": {
+       "version": "18.3.23",
+       "resolved": "https://registry.npmjs.org/@types/react/-/react-18.3.23.tgz",
+       "integrity": "sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==",
+-      "devOptional": true,
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@types/prop-types": "*",
+@@ -3028,7 +2965,7 @@
+       "version": "18.3.7",
+       "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.3.7.tgz",
+       "integrity": "sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==",
+-      "devOptional": true,
++      "dev": true,
+       "license": "MIT",
+       "peerDependencies": {
+         "@types/react": "^18.0.0"
+@@ -3292,6 +3229,19 @@
+         "url": "https://opencollective.com/typescript-eslint"
+       }
+     },
++    "node_modules/@vitejs/plugin-basic-ssl": {
++      "version": "2.3.0",
++      "resolved": "https://registry.npmjs.org/@vitejs/plugin-basic-ssl/-/plugin-basic-ssl-2.3.0.tgz",
++      "integrity": "sha512-bdyo8rB3NnQbikdMpHaML9Z1OZPBu6fFOBo+OtxsBlvMJtysWskmBcnbIDhUqgC8tcxNv/a+BcV5U+2nQMm1OQ==",
++      "dev": true,
++      "license": "MIT",
++      "engines": {
++        "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
++      },
++      "peerDependencies": {
++        "vite": "^6.0.0 || ^7.0.0 || ^8.0.0"
++      }
++    },
+     "node_modules/@vitejs/plugin-react-swc": {
+       "version": "3.11.0",
+       "resolved": "https://registry.npmjs.org/@vitejs/plugin-react-swc/-/plugin-react-swc-3.11.0.tgz",
+@@ -3510,6 +3460,7 @@
+       "version": "6.1.0",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.1.0.tgz",
+       "integrity": "sha512-7HSX4QQb4CspciLpVFwyRe79O3xsIZDDLER21kERQ71oaPodF8jL725AgJMFAYbooIqolJoRLuM81SpeUkpkvA==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=12"
+@@ -3522,6 +3473,7 @@
+       "version": "4.3.0",
+       "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
+       "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "color-convert": "^2.0.1"
+@@ -3537,12 +3489,14 @@
+       "version": "1.3.0",
+       "resolved": "https://registry.npmjs.org/any-promise/-/any-promise-1.3.0.tgz",
+       "integrity": "sha512-7UvmKalWRt1wgjL1RrGxoSJW/0QZFIegpeGvZG9kjp8vrRu55XTHbwnqq2GpXm9uLbcuhxm3IqX9OB4MZR1b2A==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/anymatch": {
+       "version": "3.1.3",
+       "resolved": "https://registry.npmjs.org/anymatch/-/anymatch-3.1.3.tgz",
+       "integrity": "sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "normalize-path": "^3.0.0",
+@@ -3556,6 +3510,7 @@
+       "version": "2.3.1",
+       "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",
+       "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8.6"
+@@ -3568,6 +3523,7 @@
+       "version": "5.0.2",
+       "resolved": "https://registry.npmjs.org/arg/-/arg-5.0.2.tgz",
+       "integrity": "sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/argparse": {
+@@ -3658,12 +3614,14 @@
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz",
+       "integrity": "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/binary-extensions": {
+       "version": "2.3.0",
+       "resolved": "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.3.0.tgz",
+       "integrity": "sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8"
+@@ -3687,6 +3645,7 @@
+       "version": "3.0.3",
+       "resolved": "https://registry.npmjs.org/braces/-/braces-3.0.3.tgz",
+       "integrity": "sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "fill-range": "^7.1.1"
+@@ -3766,6 +3725,7 @@
+       "version": "2.0.1",
+       "resolved": "https://registry.npmjs.org/camelcase-css/-/camelcase-css-2.0.1.tgz",
+       "integrity": "sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">= 6"
+@@ -3840,6 +3800,7 @@
+       "version": "3.6.0",
+       "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-3.6.0.tgz",
+       "integrity": "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "anymatch": "~3.1.2",
+@@ -3864,6 +3825,7 @@
+       "version": "5.1.2",
+       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "is-glob": "^4.0.1"
+@@ -3990,6 +3952,7 @@
+       "version": "2.0.1",
+       "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
+       "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "color-name": "~1.1.4"
+@@ -4002,6 +3965,7 @@
+       "version": "1.1.4",
+       "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
+       "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/combined-stream": {
+@@ -4021,6 +3985,7 @@
+       "version": "4.1.1",
+       "resolved": "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz",
+       "integrity": "sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">= 6"
+@@ -4078,6 +4043,7 @@
+       "version": "7.0.6",
+       "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
+       "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
++      "dev": true,
+       "dependencies": {
+         "path-key": "^3.1.0",
+         "shebang-command": "^2.0.0",
+@@ -4098,6 +4064,7 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz",
+       "integrity": "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==",
++      "dev": true,
+       "license": "MIT",
+       "bin": {
+         "cssesc": "bin/cssesc"
+@@ -4343,17 +4310,6 @@
+         "node": ">=0.4.0"
+       }
+     },
+-    "node_modules/dequal": {
+-      "version": "2.0.3",
+-      "resolved": "https://registry.npmjs.org/dequal/-/dequal-2.0.3.tgz",
+-      "integrity": "sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "engines": {
+-        "node": ">=6"
+-      }
+-    },
+     "node_modules/detect-node-es": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/detect-node-es/-/detect-node-es-1.1.0.tgz",
+@@ -4364,12 +4320,14 @@
+       "version": "1.2.2",
+       "resolved": "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz",
+       "integrity": "sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==",
++      "dev": true,
+       "license": "Apache-2.0"
+     },
+     "node_modules/dlv": {
+       "version": "1.1.3",
+       "resolved": "https://registry.npmjs.org/dlv/-/dlv-1.1.3.tgz",
+       "integrity": "sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/dom-accessibility-api": {
+@@ -4422,6 +4380,7 @@
+       "version": "0.2.0",
+       "resolved": "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz",
+       "integrity": "sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/electron-to-chromium": {
+@@ -4463,6 +4422,7 @@
+       "version": "9.2.2",
+       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz",
+       "integrity": "sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/entities": {
+@@ -4856,6 +4816,7 @@
+       "version": "3.3.2",
+       "resolved": "https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.2.tgz",
+       "integrity": "sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@nodelib/fs.stat": "^2.0.2",
+@@ -4872,6 +4833,7 @@
+       "version": "5.1.2",
+       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+       "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "is-glob": "^4.0.1"
+@@ -4898,6 +4860,7 @@
+       "version": "1.17.1",
+       "resolved": "https://registry.npmjs.org/fastq/-/fastq-1.17.1.tgz",
+       "integrity": "sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "reusify": "^1.0.4"
+@@ -4938,6 +4901,7 @@
+       "version": "7.1.1",
+       "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-7.1.1.tgz",
+       "integrity": "sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "to-regex-range": "^5.0.1"
+@@ -4988,6 +4952,7 @@
+       "version": "3.3.0",
+       "resolved": "https://registry.npmjs.org/foreground-child/-/foreground-child-3.3.0.tgz",
+       "integrity": "sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "cross-spawn": "^7.0.0",
+@@ -5062,6 +5027,7 @@
+       "version": "2.3.3",
+       "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz",
+       "integrity": "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==",
++      "dev": true,
+       "hasInstallScript": true,
+       "license": "MIT",
+       "optional": true,
+@@ -5076,6 +5042,7 @@
+       "version": "1.1.2",
+       "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
+       "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
++      "dev": true,
+       "license": "MIT",
+       "funding": {
+         "url": "https://github.com/sponsors/ljharb"
+@@ -5143,6 +5110,7 @@
+       "version": "10.4.5",
+       "resolved": "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz",
+       "integrity": "sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "foreground-child": "^3.1.0",
+@@ -5163,6 +5131,7 @@
+       "version": "6.0.2",
+       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-6.0.2.tgz",
+       "integrity": "sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "is-glob": "^4.0.3"
+@@ -5175,6 +5144,7 @@
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.2.tgz",
+       "integrity": "sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "balanced-match": "^1.0.0"
+@@ -5184,6 +5154,7 @@
+       "version": "9.0.5",
+       "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-9.0.5.tgz",
+       "integrity": "sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "brace-expansion": "^2.0.1"
+@@ -5271,6 +5242,7 @@
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.2.tgz",
+       "integrity": "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "function-bind": "^1.1.2"
+@@ -5453,6 +5425,7 @@
+       "version": "2.1.0",
+       "resolved": "https://registry.npmjs.org/is-binary-path/-/is-binary-path-2.1.0.tgz",
+       "integrity": "sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "binary-extensions": "^2.0.0"
+@@ -5465,6 +5438,7 @@
+       "version": "2.15.1",
+       "resolved": "https://registry.npmjs.org/is-core-module/-/is-core-module-2.15.1.tgz",
+       "integrity": "sha512-z0vtXSwucUJtANQWldhbtbt7BnL0vxiFjIdDLAatwhDYty2bad6s+rijD6Ri4YuYJubLzIJLUidCh09e1djEVQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "hasown": "^2.0.2"
+@@ -5480,6 +5454,7 @@
+       "version": "2.1.1",
+       "resolved": "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz",
+       "integrity": "sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=0.10.0"
+@@ -5489,6 +5464,7 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz",
+       "integrity": "sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8"
+@@ -5498,6 +5474,7 @@
+       "version": "4.0.3",
+       "resolved": "https://registry.npmjs.org/is-glob/-/is-glob-4.0.3.tgz",
+       "integrity": "sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "is-extglob": "^2.1.1"
+@@ -5510,6 +5487,7 @@
+       "version": "7.0.0",
+       "resolved": "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz",
+       "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=0.12.0"
+@@ -5526,12 +5504,14 @@
+       "version": "2.0.0",
+       "resolved": "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz",
+       "integrity": "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==",
++      "dev": true,
+       "license": "ISC"
+     },
+     "node_modules/jackspeak": {
+       "version": "3.4.3",
+       "resolved": "https://registry.npmjs.org/jackspeak/-/jackspeak-3.4.3.tgz",
+       "integrity": "sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==",
++      "dev": true,
+       "license": "BlueOak-1.0.0",
+       "dependencies": {
+         "@isaacs/cliui": "^8.0.2"
+@@ -5547,6 +5527,7 @@
+       "version": "1.21.6",
+       "resolved": "https://registry.npmjs.org/jiti/-/jiti-1.21.6.tgz",
+       "integrity": "sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==",
++      "dev": true,
+       "license": "MIT",
+       "bin": {
+         "jiti": "bin/jiti.js"
+@@ -5666,6 +5647,7 @@
+       "version": "3.1.3",
+       "resolved": "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.3.tgz",
+       "integrity": "sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=14"
+@@ -5678,6 +5660,7 @@
+       "version": "1.2.4",
+       "resolved": "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz",
+       "integrity": "sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/locate-path": {
+@@ -5744,6 +5727,7 @@
+       "version": "10.4.3",
+       "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-10.4.3.tgz",
+       "integrity": "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==",
++      "dev": true,
+       "license": "ISC"
+     },
+     "node_modules/lucide-react": {
+@@ -5754,17 +5738,6 @@
+         "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc"
+       }
+     },
+-    "node_modules/lz-string": {
+-      "version": "1.5.0",
+-      "resolved": "https://registry.npmjs.org/lz-string/-/lz-string-1.5.0.tgz",
+-      "integrity": "sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "bin": {
+-        "lz-string": "bin/bin.js"
+-      }
+-    },
+     "node_modules/magic-string": {
+       "version": "0.30.21",
+       "resolved": "https://registry.npmjs.org/magic-string/-/magic-string-0.30.21.tgz",
+@@ -5789,6 +5762,7 @@
+       "version": "1.4.1",
+       "resolved": "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz",
+       "integrity": "sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">= 8"
+@@ -5798,6 +5772,7 @@
+       "version": "4.0.8",
+       "resolved": "https://registry.npmjs.org/micromatch/-/micromatch-4.0.8.tgz",
+       "integrity": "sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "braces": "^3.0.3",
+@@ -5811,6 +5786,7 @@
+       "version": "2.3.1",
+       "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",
+       "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8.6"
+@@ -5869,6 +5845,7 @@
+       "version": "7.1.2",
+       "resolved": "https://registry.npmjs.org/minipass/-/minipass-7.1.2.tgz",
+       "integrity": "sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==",
++      "dev": true,
+       "license": "ISC",
+       "engines": {
+         "node": ">=16 || 14 >=14.17"
+@@ -5900,6 +5877,7 @@
+       "version": "2.7.0",
+       "resolved": "https://registry.npmjs.org/mz/-/mz-2.7.0.tgz",
+       "integrity": "sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "any-promise": "^1.0.0",
+@@ -5911,6 +5889,7 @@
+       "version": "3.3.11",
+       "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.11.tgz",
+       "integrity": "sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==",
++      "dev": true,
+       "funding": [
+         {
+           "type": "github",
+@@ -5953,6 +5932,7 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz",
+       "integrity": "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=0.10.0"
+@@ -5988,6 +5968,7 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz",
+       "integrity": "sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">= 6"
+@@ -6047,6 +6028,7 @@
+       "version": "1.0.1",
+       "resolved": "https://registry.npmjs.org/package-json-from-dist/-/package-json-from-dist-1.0.1.tgz",
+       "integrity": "sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==",
++      "dev": true,
+       "license": "BlueOak-1.0.0"
+     },
+     "node_modules/parent-module": {
+@@ -6089,6 +6071,7 @@
+       "version": "3.1.1",
+       "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",
+       "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8"
+@@ -6098,12 +6081,14 @@
+       "version": "1.0.7",
+       "resolved": "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz",
+       "integrity": "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/path-scurry": {
+       "version": "1.11.1",
+       "resolved": "https://registry.npmjs.org/path-scurry/-/path-scurry-1.11.1.tgz",
+       "integrity": "sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==",
++      "dev": true,
+       "license": "BlueOak-1.0.0",
+       "dependencies": {
+         "lru-cache": "^10.2.0",
+@@ -6137,6 +6122,7 @@
+       "version": "1.1.1",
+       "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==",
++      "dev": true,
+       "license": "ISC"
+     },
+     "node_modules/picomatch": {
+@@ -6156,6 +6142,7 @@
+       "version": "2.3.0",
+       "resolved": "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz",
+       "integrity": "sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=0.10.0"
+@@ -6165,6 +6152,7 @@
+       "version": "4.0.6",
+       "resolved": "https://registry.npmjs.org/pirates/-/pirates-4.0.6.tgz",
+       "integrity": "sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">= 6"
+@@ -6174,6 +6162,7 @@
+       "version": "8.5.6",
+       "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.6.tgz",
+       "integrity": "sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==",
++      "dev": true,
+       "funding": [
+         {
+           "type": "opencollective",
+@@ -6202,6 +6191,7 @@
+       "version": "15.1.0",
+       "resolved": "https://registry.npmjs.org/postcss-import/-/postcss-import-15.1.0.tgz",
+       "integrity": "sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "postcss-value-parser": "^4.0.0",
+@@ -6219,6 +6209,7 @@
+       "version": "4.0.1",
+       "resolved": "https://registry.npmjs.org/postcss-js/-/postcss-js-4.0.1.tgz",
+       "integrity": "sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "camelcase-css": "^2.0.1"
+@@ -6238,6 +6229,7 @@
+       "version": "4.0.2",
+       "resolved": "https://registry.npmjs.org/postcss-load-config/-/postcss-load-config-4.0.2.tgz",
+       "integrity": "sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==",
++      "dev": true,
+       "funding": [
+         {
+           "type": "opencollective",
+@@ -6273,6 +6265,7 @@
+       "version": "6.2.0",
+       "resolved": "https://registry.npmjs.org/postcss-nested/-/postcss-nested-6.2.0.tgz",
+       "integrity": "sha512-HQbt28KulC5AJzG+cZtj9kvKB93CFCdLvog1WFLf1D+xmMvPGlBstkpTEZfK5+AN9hfJocyBFCNiqyS48bpgzQ==",
++      "dev": true,
+       "funding": [
+         {
+           "type": "opencollective",
+@@ -6298,6 +6291,7 @@
+       "version": "6.1.2",
+       "resolved": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.2.tgz",
+       "integrity": "sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "cssesc": "^3.0.0",
+@@ -6311,6 +6305,7 @@
+       "version": "4.2.0",
+       "resolved": "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz",
+       "integrity": "sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/prelude-ls": {
+@@ -6323,55 +6318,6 @@
+         "node": ">= 0.8.0"
+       }
+     },
+-    "node_modules/pretty-format": {
+-      "version": "27.5.1",
+-      "resolved": "https://registry.npmjs.org/pretty-format/-/pretty-format-27.5.1.tgz",
+-      "integrity": "sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "dependencies": {
+-        "ansi-regex": "^5.0.1",
+-        "ansi-styles": "^5.0.0",
+-        "react-is": "^17.0.1"
+-      },
+-      "engines": {
+-        "node": "^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0"
+-      }
+-    },
+-    "node_modules/pretty-format/node_modules/ansi-regex": {
+-      "version": "5.0.1",
+-      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+-      "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "engines": {
+-        "node": ">=8"
+-      }
+-    },
+-    "node_modules/pretty-format/node_modules/ansi-styles": {
+-      "version": "5.2.0",
+-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true,
+-      "engines": {
+-        "node": ">=10"
+-      },
+-      "funding": {
+-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+-      }
+-    },
+-    "node_modules/pretty-format/node_modules/react-is": {
+-      "version": "17.0.2",
+-      "resolved": "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz",
+-      "integrity": "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==",
+-      "dev": true,
+-      "license": "MIT",
+-      "peer": true
+-    },
+     "node_modules/prop-types": {
+       "version": "15.8.1",
+       "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz",
+@@ -6423,6 +6369,7 @@
+       "version": "1.2.3",
+       "resolved": "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz",
+       "integrity": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==",
++      "dev": true,
+       "funding": [
+         {
+           "type": "github",
+@@ -6693,6 +6640,7 @@
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/read-cache/-/read-cache-1.0.0.tgz",
+       "integrity": "sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "pify": "^2.3.0"
+@@ -6702,6 +6650,7 @@
+       "version": "3.6.0",
+       "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-3.6.0.tgz",
+       "integrity": "sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "picomatch": "^2.2.1"
+@@ -6714,6 +6663,7 @@
+       "version": "2.3.1",
+       "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz",
+       "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8.6"
+@@ -6789,6 +6739,7 @@
+       "version": "1.22.8",
+       "resolved": "https://registry.npmjs.org/resolve/-/resolve-1.22.8.tgz",
+       "integrity": "sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "is-core-module": "^2.13.0",
+@@ -6816,6 +6767,7 @@
+       "version": "1.0.4",
+       "resolved": "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz",
+       "integrity": "sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "iojs": ">=1.0.0",
+@@ -6862,6 +6814,7 @@
+       "version": "1.2.0",
+       "resolved": "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz",
+       "integrity": "sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==",
++      "dev": true,
+       "funding": [
+         {
+           "type": "github",
+@@ -6943,6 +6896,7 @@
+       "version": "2.0.0",
+       "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz",
+       "integrity": "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "shebang-regex": "^3.0.0"
+@@ -6955,6 +6909,7 @@
+       "version": "3.0.0",
+       "resolved": "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz",
+       "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8"
+@@ -6984,6 +6939,7 @@
+       "version": "4.1.0",
+       "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz",
+       "integrity": "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==",
++      "dev": true,
+       "license": "ISC",
+       "engines": {
+         "node": ">=14"
+@@ -7017,6 +6973,7 @@
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
+       "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==",
++      "dev": true,
+       "license": "BSD-3-Clause",
+       "engines": {
+         "node": ">=0.10.0"
+@@ -7040,6 +6997,7 @@
+       "version": "5.1.2",
+       "resolved": "https://registry.npmjs.org/string-width/-/string-width-5.1.2.tgz",
+       "integrity": "sha512-HnLOCR3vjcY8beoNLtcjZ5/nxn2afmME6lhrDrebokqMap+XbeW8n9TXpPDOqdGK5qcI3oT0GKTW6wC7EMiVqA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "eastasianwidth": "^0.2.0",
+@@ -7058,6 +7016,7 @@
+       "version": "4.2.3",
+       "resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",
+       "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "emoji-regex": "^8.0.0",
+@@ -7072,6 +7031,7 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8"
+@@ -7081,12 +7041,14 @@
+       "version": "8.0.0",
+       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",
+       "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/string-width-cjs/node_modules/strip-ansi": {
+       "version": "6.0.1",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+       "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^5.0.1"
+@@ -7099,6 +7061,7 @@
+       "version": "7.1.0",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz",
+       "integrity": "sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^6.0.1"
+@@ -7115,6 +7078,7 @@
+       "version": "6.0.1",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+       "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^5.0.1"
+@@ -7127,6 +7091,7 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8"
+@@ -7182,6 +7147,7 @@
+       "version": "3.35.0",
+       "resolved": "https://registry.npmjs.org/sucrase/-/sucrase-3.35.0.tgz",
+       "integrity": "sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@jridgewell/gen-mapping": "^0.3.2",
+@@ -7217,6 +7183,7 @@
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz",
+       "integrity": "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">= 0.4"
+@@ -7246,6 +7213,7 @@
+       "version": "3.4.17",
+       "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.17.tgz",
+       "integrity": "sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "@alloc/quick-lru": "^5.2.0",
+@@ -7292,6 +7260,7 @@
+       "version": "3.3.1",
+       "resolved": "https://registry.npmjs.org/thenify/-/thenify-3.3.1.tgz",
+       "integrity": "sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "any-promise": "^1.0.0"
+@@ -7301,6 +7270,7 @@
+       "version": "1.6.0",
+       "resolved": "https://registry.npmjs.org/thenify-all/-/thenify-all-1.6.0.tgz",
+       "integrity": "sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "thenify": ">= 3.1.0 < 4"
+@@ -7380,6 +7350,7 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/to-regex-range/-/to-regex-range-5.0.1.tgz",
+       "integrity": "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "is-number": "^7.0.0"
+@@ -7444,6 +7415,7 @@
+       "version": "0.1.13",
+       "resolved": "https://registry.npmjs.org/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz",
+       "integrity": "sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==",
++      "dev": true,
+       "license": "Apache-2.0"
+     },
+     "node_modules/tslib": {
+@@ -7469,7 +7441,7 @@
+       "version": "5.8.3",
+       "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.8.3.tgz",
+       "integrity": "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==",
+-      "devOptional": true,
++      "dev": true,
+       "license": "Apache-2.0",
+       "bin": {
+         "tsc": "bin/tsc",
+@@ -7628,6 +7600,7 @@
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
+       "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/vaul": {
+@@ -7895,6 +7868,7 @@
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
+       "integrity": "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==",
++      "dev": true,
+       "license": "ISC",
+       "dependencies": {
+         "isexe": "^2.0.0"
+@@ -7937,6 +7911,7 @@
+       "version": "8.1.0",
+       "resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-8.1.0.tgz",
+       "integrity": "sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-styles": "^6.1.0",
+@@ -7955,6 +7930,7 @@
+       "version": "7.0.0",
+       "resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz",
+       "integrity": "sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-styles": "^4.0.0",
+@@ -7972,6 +7948,7 @@
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+       "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=8"
+@@ -7981,12 +7958,14 @@
+       "version": "8.0.0",
+       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",
+       "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==",
++      "dev": true,
+       "license": "MIT"
+     },
+     "node_modules/wrap-ansi-cjs/node_modules/string-width": {
+       "version": "4.2.3",
+       "resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",
+       "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "emoji-regex": "^8.0.0",
+@@ -8001,6 +7980,7 @@
+       "version": "6.0.1",
+       "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+       "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "ansi-regex": "^5.0.1"
+@@ -8013,6 +7993,7 @@
+       "version": "6.2.1",
+       "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-6.2.1.tgz",
+       "integrity": "sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=12"
+@@ -8074,6 +8055,7 @@
+       "version": "2.6.0",
+       "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.6.0.tgz",
+       "integrity": "sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==",
++      "dev": true,
+       "license": "ISC",
+       "bin": {
+         "yaml": "bin.mjs"
+diff --git a/package.json b/package.json
+index fa58cb7..26e988b 100644
+--- a/package.json
++++ b/package.json
+@@ -78,6 +78,7 @@
+     "@types/node": "^22.16.5",
+     "@types/react": "^18.3.23",
+     "@types/react-dom": "^18.3.7",
++    "@vitejs/plugin-basic-ssl": "^2.3.0",
+     "@vitejs/plugin-react-swc": "^3.11.0",
+     "autoprefixer": "^10.4.21",
+     "concurrently": "^9.2.1",
+diff --git a/server/compile_errors.txt b/server/compile_errors.txt
+new file mode 100644
+index 0000000..9fd0757
+Binary files /dev/null and b/server/compile_errors.txt differ
+diff --git a/server/src/controllers/NotificationController.ts b/server/src/controllers/NotificationController.ts
+new file mode 100644
+index 0000000..f9327a9
+--- /dev/null
++++ b/server/src/controllers/NotificationController.ts
+@@ -0,0 +1,59 @@
++import { Request, Response } from 'express';
++import { Notification } from '../models/Notification';
++import { User } from '../models/User';
++import { AuthRequest } from '../middleware/auth';
++import { sendNotificationEmail } from '../utils/sendEmail';
++
++/**
++ * Creates a notification for a user.
++ * This can be called from other controllers when an action happens.
++ */
++export const createNotification = async (userId: string, title: string, message: string, type: 'order' | 'pressing' | 'system') => {
++    try {
++        const notif = await Notification.create({
++            user: userId,
++            title,
++            message,
++            type,
++            read: false,
++        });
++
++        // Also send an email notification
++        try {
++            const user = await User.findById(userId);
++            if (user && user.email) {
++                await sendNotificationEmail(user.email, title, message);
++            }
++        } catch (emailError) {
++            console.error('[NOTIF-EMAIL-ERROR] Failed to send email for notification:', emailError);
++        }
++
++        return notif;
++    } catch (error) {
++        console.error('[NOTIF-ERROR] Create fail:', error);
++        return null;
++    }
++};
++
++export const getMyNotifications = async (req: AuthRequest, res: Response) => {
++    try {
++        const notifs = await Notification.find({ user: req.user?.id })
++            .sort({ created_at: -1 })
++            .limit(50);
++        res.json(notifs);
++    } catch (error) {
++        res.status(500).json({ message: 'Erreur serveur.' });
++    }
++};
++
++export const markAsRead = async (req: AuthRequest, res: Response) => {
++    try {
++        await Notification.updateMany(
++            { user: req.user?.id, read: false },
++            { $set: { read: true } }
++        );
++        res.json({ message: 'Notifications marqu├⌐es comme lues.' });
++    } catch (error) {
++        res.status(500).json({ message: 'Erreur serveur.' });
++    }
++};
+diff --git a/server/src/routes/auth.ts b/server/src/routes/auth.ts
+index 61f505c..1f41b39 100644
+--- a/server/src/routes/auth.ts
++++ b/server/src/routes/auth.ts
+@@ -48,6 +48,7 @@ router.post(
+             });
+ 
+             // Send Welcome Email (non-blocking)
++            console.log(`[AUTH] Triggering welcome email for: ${email}`);
+             sendWelcomeEmail(email, first_name).catch(err => console.error('[AUTH] Welcome email fail:', err));
+ 
+             const token = jwt.sign(
+@@ -138,31 +139,61 @@ router.post(
+ // POST /api/auth/google
+ router.post(
+     '/google',
+-    [body('credential').notEmpty().withMessage('Token Google manquant')],
+     async (req: any, res: Response): Promise<void> => {
+-        const errors = validationResult(req);
+-        if (!errors.isEmpty()) {
+-            res.status(400).json({ errors: errors.array() });
++        const { credential } = req.body;
++
++        if (!credential) {
++            res.status(400).json({ message: 'Token Google manquant' });
+             return;
+         }
+ 
+-        const { credential } = req.body;
+-
+         try {
+-            // Very Google ID Token
+-            const ticket = await googleClient.verifyIdToken({
+-                idToken: credential,
+-                audience: process.env.GOOGLE_CLIENT_ID,
+-            });
+-            const payload = ticket.getPayload();
+-            
+-            if (!payload || !payload.email) {
++            let email: string | undefined;
++            let given_name: string | undefined;
++            let family_name: string | undefined;
++
++            // Try as access_token first (from useGoogleLogin popup flow)
++            try {
++                const userInfo: any = await new Promise((resolve, reject) => {
++                    const https = require('https');
++                    https.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${credential}`, (resp: any) => {
++                        let data = '';
++                        resp.on('data', (chunk: string) => { data += chunk; });
++                        resp.on('end', () => {
++                            try { resolve(JSON.parse(data)); } catch { reject(new Error('Invalid JSON')); }
++                        });
++                    }).on('error', reject);
++                });
++                if (userInfo.email) {
++                    email = userInfo.email;
++                    given_name = userInfo.given_name;
++                    family_name = userInfo.family_name;
++                }
++            } catch {
++                // Not an access_token, try as ID token below
++            }
++
++            // Fallback: try as ID token (from GoogleLogin component)
++            if (!email) {
++                const ticket = await googleClient.verifyIdToken({
++                    idToken: credential,
++                    audience: process.env.GOOGLE_CLIENT_ID,
++                });
++                const payload = ticket.getPayload();
++                if (!payload || !payload.email) {
++                    res.status(400).json({ message: 'Token Google invalide' });
++                    return;
++                }
++                email = payload.email;
++                given_name = payload.given_name;
++                family_name = payload.family_name;
++            }
++
++            if (!email) {
+                 res.status(400).json({ message: 'Token Google invalide' });
+                 return;
+             }
+ 
+-            const { email, given_name, family_name } = payload;
+-
+             // Check if user exists
+             let user = await User.findOne({ email });
+             const isAdmin = email.toLowerCase() === (process.env.ADMIN_EMAIL || '').toLowerCase();
+@@ -181,6 +212,9 @@ router.post(
+                     password: hashed,
+                     role: isAdmin ? 'owner' : 'customer',
+                 });
++
++                // NEW: Send Welcome Email for Google Users
++                sendWelcomeEmail(email, user.first_name).catch(err => console.error('[AUTH] Google Welcome email fail:', err));
+             } else if (isAdmin && user.role !== 'owner') {
+                 // Promote existing Google user if they are now in the admin list
+                 user.role = 'owner';
+diff --git a/server/src/routes/orders.js b/server/src/routes/orders.js
+index 2919989..9e596bc 100644
+--- a/server/src/routes/orders.js
++++ b/server/src/routes/orders.js
+@@ -184,6 +184,22 @@ router.patch('/:id/status', auth_1.authenticate, auth_1.ownerOnly, async (req, r
+             title: 'Mise ├á jour de votre commande',
+             message: `Le statut de votre commande est maintenant : ${status}.`,
+         });
++
++        // EMAIL NOTIFICATION
++        (async () => {
++            try {
++                const user = await User_1.User.findById(order.user_id);
++                if (user && user.email) {
++                    await (0, sendEmail_1.sendNotificationEmail)(
++                        user.email,
++                        'Mise ├á jour de votre commande - TAZDAYTH',
++                        `Bonjour ${user.first_name}, le statut de votre commande #${order.tracking_code} a ├⌐t├⌐ mis ├á jour : **${status}**.`
++                    );
++                }
++            } catch (err) {
++                console.error('Order status email error:', err);
++            }
++        })();
+         res.json(order);
+     }
+     catch (error) {
+@@ -216,6 +232,22 @@ router.patch('/:id/pickup', auth_1.authenticate, auth_1.ownerOnly, async (req, r
+             title: '≡ƒôà Disponibilit├⌐ de votre commande',
+             message: `Vous pouvez r├⌐cup├⌐rer votre commande entre le ${new Date(pickup_range_start).toLocaleDateString()} et le ${new Date(pickup_range_end).toLocaleDateString()} (${pickup_hours}).`,
+         });
++
++        // EMAIL NOTIFICATION
++        (async () => {
++            try {
++                const user = await User_1.User.findById(order.user_id);
++                if (user && user.email) {
++                    await (0, sendEmail_1.sendNotificationEmail)(
++                        user.email,
++                        '≡ƒôà Cr├⌐neau de r├⌐cup├⌐ration disponible - TAZDAYTH',
++                        `Bonne nouvelle ${user.first_name} ! Votre commande #${order.tracking_code} est pr├¬te. \n\nVous pouvez venir la r├⌐cup├⌐rer entre le **${new Date(pickup_range_start).toLocaleDateString()}** et le **${new Date(pickup_range_end).toLocaleDateString()}** (${pickup_hours}).`
++                    );
++                }
++            } catch (err) {
++                console.error('Pickup proposal email error:', err);
++            }
++        })();
+         res.json(order);
+     }
+     catch (error) {
+diff --git a/server/src/routes/pressing.js b/server/src/routes/pressing.js
+index 32c45ca..6869458 100644
+--- a/server/src/routes/pressing.js
++++ b/server/src/routes/pressing.js
+@@ -133,6 +133,22 @@ router.patch('/:id/status', auth_1.authenticate, auth_1.ownerOnly, async (req, r
+             title: 'Mise ├á jour de votre demande de pressage',
+             message: `Le statut de votre demande de pressage est maintenant : ${status}.`,
+         });
++
++        // EMAIL NOTIFICATION
++        (async () => {
++            try {
++                const user = await User_1.User.findById(request.user_id);
++                if (user && user.email) {
++                    await (0, sendEmail_1.sendNotificationEmail)(
++                        user.email,
++                        '≡ƒî┐ Mise ├á jour de votre demande de pressage - TAZDAYTH',
++                        `Bonjour ${user.first_name}, bonne nouvelle ! Votre demande #${request.tracking_code} est maintenant : **${status}**.`
++                    );
++                }
++            } catch (err) {
++                console.error('Pressing status email error:', err);
++            }
++        })();
+         res.json(request);
+     }
+     catch {
+@@ -175,6 +191,22 @@ router.patch('/:id/appointment', auth_1.authenticate, auth_1.ownerOnly, [
+             title: 'Dates de pressage programm├⌐es',
+             message: `Vos dates ont ├⌐t├⌐ fix├⌐es : ${datesMessage}`,
+         });
++
++        // EMAIL NOTIFICATION
++        (async () => {
++            try {
++                const user = await User_1.User.findById(request.user_id);
++                if (user && user.email) {
++                    await (0, sendEmail_1.sendNotificationEmail)(
++                        user.email,
++                        '≡ƒôà Votre rendez-vous au moulin TAZDAYTH',
++                        `Bonjour ${user.first_name}, vos dates de pressage ont ├⌐t├⌐ fix├⌐es : \n\n${datesMessage} \n\n├Ç tr├¿s bient├┤t au moulin !`
++                    );
++                }
++            } catch (err) {
++                console.error('Pressing appointment email error:', err);
++            }
++        })();
+         res.json(request);
+     }
+     catch {
+diff --git a/server/src/test-email.ts b/server/src/test-email.ts
+new file mode 100644
+index 0000000..6412c93
+--- /dev/null
++++ b/server/src/test-email.ts
+@@ -0,0 +1,49 @@
++import nodemailer from 'nodemailer';
++import dotenv from 'dotenv';
++import path from 'path';
++import { fileURLToPath } from 'url';
++
++const __dirname = path.dirname(fileURLToPath(import.meta.url));
++dotenv.config({ path: path.join(__dirname, '../.env') });
++
++async function testGmail() {
++    console.log('--- GMAIL CONNECTION TEST ---');
++    console.log('User:', process.env.EMAIL_USER);
++    console.log('Host:', process.env.EMAIL_HOST);
++    
++    const transporter = nodemailer.createTransport({
++        host: process.env.EMAIL_HOST || 'smtp.gmail.com',
++        port: parseInt(process.env.EMAIL_PORT || '465'),
++        secure: process.env.EMAIL_SECURE === 'true',
++        auth: {
++            user: process.env.EMAIL_USER,
++            pass: process.env.EMAIL_PASS,
++        },
++    });
++
++    try {
++        console.log('Testing connection...');
++        await transporter.verify();
++        console.log('Γ£à SUCCESS: Connection successful!');
++        
++        console.log('Sending test email...');
++        const info = await transporter.sendMail({
++            from: `"Test TAZDAYTH" <${process.env.EMAIL_USER}>`,
++            to: process.env.EMAIL_USER, // Send to self
++            subject: 'Test Connection TAZDAYTH',
++            text: 'This is a test email to verify SMTP settings.',
++        });
++        console.log('Γ£à SUCCESS: Email sent!', info.messageId);
++    } catch (error: any) {
++        console.error('Γ¥î FAILED:', error.message);
++        if (error.message.includes('EADDRINUSE')) {
++            console.log('Hint: Port is busy.');
++        } else if (error.message.includes('Invalid login')) {
++            console.log('Hint: Your App Password in .env might be wrong or contains spaces.');
++        } else if (error.message.includes('ETIMEDOUT')) {
++            console.log('Hint: Network issue or firewall blocking port 465.');
++        }
++    }
++}
++
++testGmail();
+diff --git a/server/src/utils/sendEmail.ts b/server/src/utils/sendEmail.ts
+index fc2b282..4e9640e 100644
+--- a/server/src/utils/sendEmail.ts
++++ b/server/src/utils/sendEmail.ts
+@@ -1,7 +1,11 @@
+ import nodemailer from 'nodemailer';
++import dotenv from 'dotenv';
++import path from 'path';
++
++// Standard dotenv loading for all environments
++dotenv.config();
+ 
+ let transporter: nodemailer.Transporter | null = null;
+-let testAccountInfo: { user: string; pass: string } | null = null;
+ 
+ async function getTransporter(): Promise<nodemailer.Transporter> {
+     if (transporter) return transporter;
+@@ -11,20 +15,24 @@ async function getTransporter(): Promise<nodemailer.Transporter> {
+         process.env.EMAIL_PASS;
+ 
+     if (hasRealCredentials) {
++        // PRODUCTION-READY GMAIL CONFIGURATION (Using STARTTLS)
++        // This is more secure and stable than the older port 465 method.
+         transporter = nodemailer.createTransport({
+-            host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+-            port: Number(process.env.EMAIL_PORT) || 465,
+-            secure: process.env.EMAIL_SECURE === 'true',
++            host: 'smtp.gmail.com',
++            port: 587,
++            secure: false, // Must be false for STARTTLS on port 587
+             auth: {
+                 user: process.env.EMAIL_USER,
+-                pass: process.env.EMAIL_PASS,
++                pass: (process.env.EMAIL_PASS || '').trim(), // Ensure no stray spaces
+             },
++            tls: {
++                rejectUnauthorized: false // Helps avoid local network certificate issues
++            }
+         });
+-        console.log('[MAIL] Using real SMTP credentials:', process.env.EMAIL_USER);
++        console.log('[MAIL] ≡ƒöÆ Secure SMTP Transporter initialized:', process.env.EMAIL_USER);
+     } else {
+-        // Auto-create an Ethereal test account ΓÇö emails are viewable in browser
++        // Auto-create an Ethereal test account if credentials are missing
+         const testAccount = await nodemailer.createTestAccount();
+-        testAccountInfo = { user: testAccount.user, pass: testAccount.pass };
+         transporter = nodemailer.createTransport({
+             host: 'smtp.ethereal.email',
+             port: 587,
+@@ -32,38 +40,144 @@ async function getTransporter(): Promise<nodemailer.Transporter> {
+             auth: { user: testAccount.user, pass: testAccount.pass },
+         });
+         console.log('\n≡ƒôº [MAIL] Mode TEST activ├⌐ (Ethereal Email)');
+-        console.log(`   Compte de test: ${testAccount.user}`);
+-        console.log('   Les emails seront visibles via un lien dans le terminal.\n');
+-
+-        if (process.env.NODE_ENV === 'production') {
+-            console.error('\nΓ¥î AVERTISSEMENT CRITIQUE: Vous ├¬tes en production mais vous utilisez le compte de test Ethereal. Les emails de r├⌐initialisation ne parviendront pas aux vrais utilisateurs. Veuillez configurer EMAIL_USER et EMAIL_PASS dans votre fichier .env de production.\n');
+-        }
++        console.log(`   Compte: ${testAccount.user}\n`);
+     }
+ 
+     return transporter;
+ }
+ 
+-export const sendResetEmail = async (email: string, code: string) => {
+-    console.log(`[MAIL] Envoi du code de r├⌐initialisation ├á: ${email}...`);
++/**
++ * Sends a professional welcome email to new users.
++ */
++export const sendWelcomeEmail = async (email: string, name: string) => {
++    // SECURITY: Never email the admin automated welcome messages
++    const adminEmail = (process.env.ADMIN_EMAIL || 'thazdaythhuilerie@gmail.com').toLowerCase();
++    if (email.toLowerCase() === adminEmail) {
++        console.log(`[MAIL] ≡ƒÜ½ Skipping welcome email for admin: ${email}`);
++        return;
++    }
++
++    console.log(`[MAIL] ≡ƒôñ Sending welcome email to: ${email}...`);
+     const transport = await getTransporter();
+ 
+     const mailOptions = {
+-        from: `"TAZDAYTH" <${process.env.EMAIL_USER}>`,
++        from: `"Huilerie TAZDAYTH" <${process.env.EMAIL_USER}>`,
+         to: email,
+-        subject: 'R├⌐initialisation de votre mot de passe - TAZDAYTH',
+-        text: `Votre code de v├⌐rification pour r├⌐initialiser votre mot de passe est : ${code}. Il expire dans 15 minutes.`,
++        subject: 'Bienvenue chez TAZDAYTH ! ≡ƒî┐',
++        attachments: [{
++            filename: 'logo.png',
++            path: require('path').join(__dirname, '../../../public/logo.png'),
++            cid: 'tazdayth_logo'
++        }],
+         html: `
+-            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+-                <h2 style="color: #4a5568;">R├⌐initialisation de mot de passe</h2>
+-                <p>Vous avez demand├⌐ la r├⌐initialisation de votre mot de passe pour votre compte <strong>TAZDAYTH</strong>.</p>
+-                <div style="background-color: #f7fafc; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0;">
+-                    <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #2d3748;">${code}</span>
++            <!DOCTYPE html>
++            <html lang="fr">
++            <head>
++                <meta charset="UTF-8">
++                <meta name="color-scheme" content="light only">
++                <meta name="supported-color-schemes" content="light">
++                <style>
++                    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
++                    :root {
++                        color-scheme: light;
++                        supported-color-schemes: light;
++                    }
++                </style>
++            </head>
++            <body style="margin: 0; padding: 40px 20px; background-color: #ffffff; font-family: 'DM Sans', Arial, sans-serif; -webkit-font-smoothing: antialiased;">
++                
++                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; margin: 0 auto; background: linear-gradient(#f1ece3, #f1ece3); border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(41, 20, 0, 0.04);">
++                    
++                    <!-- Pre-header Spaing -->
++                    <tr>
++                        <td style="padding-top: 40px;"></td>
++                    </tr>
++
++                    <!-- Elegant Typography & Logo Header -->
++                    <tr>
++                        <td style="text-align: center; padding: 0 40px;">
++                            <img src="cid:tazdayth_logo" alt="TAZDAYTH" style="max-width: 160px; height: auto; display: block; margin: 0 auto;" />
++                            <div style="width: 40px; height: 2px; background-color: #f5da78; margin: 25px auto 15px auto;"></div>
++                            <p style="margin: 0; color: #8a7d6d; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">
++                                L'excellence de Kabylie
++                            </p>
++                        </td>
++                    </tr>
++
++                    <!-- Main Content -->
++                    <tr>
++                        <td style="padding: 40px 50px 20px; text-align: center;">
++                            <h1 style="margin: 0 0 20px; color: #291400; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">
++                                Bienvenue, ${name}.
++                            </h1>
++                            <p style="margin: 0; color: #5c4e3d; font-size: 16px; line-height: 1.8; font-weight: 400;">
++                                Nous sommes honor├⌐s de vous compter parmi nos membres privil├⌐gi├⌐s. 
++                                Votre espace d'exception est d├⌐sormais actif.
++                            </p>
++                        </td>
++                    </tr>
++
++                    <!-- Refined Features List -->
++                    <tr>
++                        <td style="padding: 10px 50px 30px;">
++                            <div style="background-color: #ffffff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(41, 20, 0, 0.02);">
++                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
++                                    <tr>
++                                        <td style="padding-bottom: 12px;">
++                                            <span style="color: #6f8d20; font-size: 18px; margin-right: 10px;">Γ£ª</span>
++                                            <span style="color: #291400; font-size: 15px; font-weight: 500;">Boutique en ligne artisanale</span>
++                                        </td>
++                                    </tr>
++                                    <tr>
++                                        <td style="padding-bottom: 12px;">
++                                            <span style="color: #6f8d20; font-size: 18px; margin-right: 10px;">Γ£ª</span>
++                                            <span style="color: #291400; font-size: 15px; font-weight: 500;">R├⌐servation de trituration</span>
++                                        </td>
++                                    </tr>
++                                    <tr>
++                                        <td>
++                                            <span style="color: #6f8d20; font-size: 18px; margin-right: 10px;">Γ£ª</span>
++                                            <span style="color: #291400; font-size: 15px; font-weight: 500;">Suivi de livraison en temps r├⌐el</span>
++                                        </td>
++                                    </tr>
++                                </table>
++                            </div>
++                        </td>
++                    </tr>
++
++                    <!-- Call to Action -->
++                    <tr>
++                        <td style="text-align: center; padding: 10px 50px 40px;">
++                            <a href="${process.env.FRONTEND_URL || 'http://localhost:5173'}" 
++                               style="display: inline-block; background-color: #6f8d20; color: #ffffff; padding: 16px 42px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">
++                                D├⌐couvrir TAZDAYTH
++                            </a>
++                        </td>
++                    </tr>
++
++                    <!-- Minimalist Footer -->
++                    <tr>
++                        <td style="background-color: #e8dfcf; padding: 30px 40px; text-align: center;">
++                            <p style="margin: 0 0 8px; color: #291400; font-size: 14px; font-weight: 700;">
++                                Pure. Artisanale. Authentique.
++                            </p>
++                            <p style="margin: 0; color: #786a58; font-size: 12px; line-height: 1.6;">
++                                ┬⌐ ${new Date().getFullYear()} TAZDAYTH. Tous droits r├⌐serv├⌐s.<br>
++                                Cet e-mail est g├⌐n├⌐r├⌐ automatiquement.
++                            </p>
++                        </td>
++                    </tr>
++
++                </table>
++                
++                <div style="text-align: center; padding-top: 20px;">
++                    <p style="color: #a89a87; font-size: 11px;">
++                        Pour vous d├⌐sabonner, veuillez configurer vos pr├⌐f├⌐rences sur le site.
++                    </p>
+                 </div>
+-                <p>Ce code est valable pendant <strong>15 minutes</strong>.</p>
+-                <p style="font-size: 0.8em; color: #a0aec0;">Si vous n'├¬tes pas ├á l'origine de cette demande, vous pouvez ignorer cet email en toute s├⌐curit├⌐.</p>
+-                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+-                <p style="text-align: center; font-weight: bold; color: #2d3748;">TAZDAYTH</p>
+-            </div>
++
++            </body>
++            </html>
+         `,
+     };
+ 
+@@ -71,98 +185,143 @@ export const sendResetEmail = async (email: string, code: string) => {
+         const info = await transport.sendMail(mailOptions);
+         logEmailSent(email, info);
+     } catch (error: any) {
+-        console.error(`[MAIL] ├ëchec d'envoi reset:`, error.message);
+-        throw error;
++        console.error(`[MAIL] Γ¥î ├ëchec d'envoi ├á ${email}:`, error.message);
+     }
+ };
+ 
+-export const sendOrderConfirmationEmail = async (email: string, orderData: { tracking_code: string; total_price: number; items: any[] }) => {
+-    console.log(`[MAIL] Envoi de la confirmation de commande ├á: ${email}...`);
++/**
++ * Sends password reset codes.
++ */
++export const sendResetEmail = async (email: string, code: string) => {
+     const transport = await getTransporter();
+ 
+     const mailOptions = {
+-        from: `"TAZDAYTH" <${process.env.EMAIL_USER}>`,
++        from: `"S├⌐curit├⌐ TAZDAYTH" <${process.env.EMAIL_USER}>`,
+         to: email,
+-        subject: `Confirmation de votre commande #${orderData.tracking_code} - TAZDAYTH`,
++        subject: 'R├⌐initialisation de votre mot de passe - TAZDAYTH',
+         html: `
+-            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+-                <h2 style="color: #2D3748; text-align: center;">Merci pour votre commande !</h2>
+-                <p>Votre commande a ├⌐t├⌐ re├ºue avec succ├¿s chez <strong>TAZDAYTH</strong>.</p>
+-                
+-                <div style="background-color: #F7FAFC; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #E2E8F0;">
+-                    <p style="margin: 0; color: #718096; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Code de suivi</p>
+-                    <p style="margin: 5px 0 0 0; font-size: 32px; font-weight: bold; color: #2D3748; letter-spacing: 2px;">${orderData.tracking_code}</p>
++            <!DOCTYPE html>
++            <html>
++            <head>
++                <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');</style>
++            </head>
++            <body style="margin: 0; padding: 0; background-color: #f1ece3; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; color: #291400;">
++                <div style="max-width: 500px; margin: 50px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(41, 20, 0, 0.05);">
++                    <div style="padding: 40px 30px; text-align: center;">
++                        <h2 style="margin: 0 0 10px; color: #6f8d20; font-size: 18px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
++                            S├⌐curit├⌐ TAZDAYTH
++                        </h2>
++                        <h1 style="color: #291400; font-size: 24px; margin: 0 0 15px; font-weight: 700;">Code de connexion</h1>
++                        <p style="font-size: 15px; line-height: 1.6; margin: 0 0 30px;">
++                            Veuillez utiliser ce code pour v├⌐rifier votre identit├⌐ :
++                        </p>
++                        
++                        <div style="background-color: #f1ece3; border: 2px solid #f5da78; padding: 25px; border-radius: 8px; margin-bottom: 30px;">
++                            <span style="font-size: 40px; font-weight: 700; letter-spacing: 10px; color: #6f8d20;">
++                                ${code}
++                            </span>
++                        </div>
++                        
++                        <p style="color: #6d6459; font-size: 13px; margin: 0;">
++                            Ce code expirera dans <strong>15 minutes</strong>.<br>
++                        </p>
++                    </div>
+                 </div>
++            </body>
++            </html>
++        `,
++    };
+ 
+-                <div style="margin: 20px 0;">
+-                    <h3 style="color: #4A5568; border-bottom: 1px solid #EDF2F7; padding-bottom: 10px;">R├⌐capitulatif</h3>
+-                    <table style="width: 100%; border-collapse: collapse;">
+-                        ${orderData.items.map(item => `
+-                            <tr>
+-                                <td style="padding: 10px 0; border-bottom: 1px solid #F7FAFC;">
+-                                    <strong>${item.name}</strong><br/>
+-                                    <span style="color: #718096; font-size: 12px;">${item.quantity}L ├ù ${item.price} DA</span>
+-                                </td>
+-                                <td style="text-align: right; padding: 10px 0; border-bottom: 1px solid #F7FAFC; font-weight: bold;">
+-                                    ${item.subtotal} DA
+-                                </td>
+-                            </tr>
+-                        `).join('')}
+-                        <tr>
+-                            <td style="padding: 20px 0 10px 0; font-weight: bold; font-size: 18px;">TOTAL</td>
+-                            <td style="text-align: right; padding: 20px 0 10px 0; font-weight: bold; font-size: 24px; color: #2D3748;">
+-                                ${orderData.total_price} DA
+-                            </td>
+-                        </tr>
+-                    </table>
+-                </div>
++    try {
++        const info = await transport.sendMail(mailOptions);
++        logEmailSent(email, info);
++    } catch (error: any) {
++        console.error(`[MAIL] Γ¥î ├ëchec d'envoi reset:`, error.message);
++        throw error;
++    }
++};
+ 
+-                <p style="font-size: 14px; color: #4A5568; background: #FFF5F5; padding: 15px; border-radius: 8px; border-left: 4px solid #F56565;">
+-                    <strong>IMPORTANT :</strong> Veuillez montrer ce code lors de la r├⌐cup├⌐ration de votre commande ├á l'huilerie.
+-                </p>
++/**
++ * Sends platform notifications (Orders, Status updates).
++ */
++export const sendNotificationEmail = async (to: string, title: string, message: string) => {
++    const transport = await getTransporter();
+ 
+-                <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+-                <p style="text-align: center; font-weight: bold; color: #2D3748;">TAZDAYTH</p>
++    const mailOptions = {
++        from: `"Notifications TAZDAYTH" <${process.env.EMAIL_USER}>`,
++        to,
++        subject: title,
++        html: `
++            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 30px; border: 1px solid #eee; border-radius: 10px;">
++                <h2 style="color: #4a6741; border-bottom: 2px solid #f9f9f9; padding-bottom: 10px;">${title}</h2>
++                <p style="line-height: 1.6; color: #333; font-size: 16px;">${message}</p>
++                <div style="margin-top: 30px; text-align: center;">
++                    <a href="${process.env.FRONTEND_URL || 'http://localhost:5173'}/suivi" style="color: #4a6741; font-weight: bold; text-decoration: underline;">Voir les d├⌐tails sur mon compte</a>
++                </div>
+             </div>
+         `,
+     };
+ 
+     try {
+         const info = await transport.sendMail(mailOptions);
+-        logEmailSent(email, info);
++        logEmailSent(to, info);
+     } catch (error: any) {
+-        console.error(`[MAIL] ├ëchec d'envoi confirmation commande:`, error.message);
++        console.error(`[MAIL] Γ¥î ├ëchec d'envoi notification:`, error.message);
+     }
+ };
+ 
+-export const sendPressingConfirmationEmail = async (email: string, pressingData: { tracking_code: string; quantity: number; quality: string }) => {
+-    console.log(`[MAIL] Envoi de la confirmation de pressage ├á: ${email}...`);
++/**
++ * Sends a detailed order confirmation/receipt.
++ */
++export const sendOrderConfirmationEmail = async (email: string, orderData: {
++    tracking_code: string;
++    total_price: number;
++    items: Array<{ name: string; quantity: number; price: number; subtotal: number }>;
++}) => {
+     const transport = await getTransporter();
+ 
++    const itemsHtml = orderData.items.map(item => `
++        <tr>
++            <td style="padding: 10px; border-bottom: 1px solid #eee;">${item.name}</td>
++            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">x${item.quantity}</td>
++            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">${item.subtotal} DA</td>
++        </tr>
++    `).join('');
++
+     const mailOptions = {
+-        from: `"TAZDAYTH" <${process.env.EMAIL_USER}>`,
++        from: `"Boutique TAZDAYTH" <${process.env.EMAIL_USER}>`,
+         to: email,
+-        subject: `Confirmation de votre demande de pressage #${pressingData.tracking_code} - TAZDAYTH`,
++        subject: `Confirmation de commande #${orderData.tracking_code} ≡ƒî┐`,
+         html: `
+-            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+-                <h2 style="color: #2D3748; text-align: center;">Demande de pressage confirm├⌐e</h2>
+-                <p>Votre demande de pressage pour <strong>${pressingData.quantity} kg</strong> d'olives a ├⌐t├⌐ enregistr├⌐e.</p>
++            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 30px; border: 1px solid #eee; border-radius: 10px;">
++                <h2 style="color: #4a6741;">Merci pour votre commande !</h2>
++                <p>Nous avons bien re├ºu votre commande <strong>#${orderData.tracking_code}</strong>.</p>
+                 
+-                <div style="background-color: #F7FAFC; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #E2E8F0;">
+-                    <p style="margin: 0; color: #718096; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Code de suivi</p>
+-                    <p style="margin: 5px 0 0 0; font-size: 32px; font-weight: bold; color: #2D3748; letter-spacing: 2px;">${pressingData.tracking_code}</p>
+-                </div>
+-
+-                <p><strong>Qualit├⌐ d'huile souhait├⌐e :</strong> ${pressingData.quality.replace('_', ' ')}</p>
+-
+-                <p style="font-size: 14px; color: #4A5568; background: #FFF5F5; padding: 15px; border-radius: 8px; border-left: 4px solid #F56565;">
+-                    <strong>IMPORTANT :</strong> Veuillez pr├⌐senter ce code lors de l'apport de vos olives ├á l'huilerie.
+-                </p>
++                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
++                    <thead>
++                        <tr style="background-color: #f9f9f9;">
++                            <th style="padding: 10px; text-align: left;">Article</th>
++                            <th style="padding: 10px; text-align: center;">Qt├⌐</th>
++                            <th style="padding: 10px; text-align: right;">Prix</th>
++                        </tr>
++                    </thead>
++                    <tbody>
++                        ${itemsHtml}
++                    </tbody>
++                    <tfoot>
++                        <tr>
++                            <td colspan="2" style="padding: 10px; font-weight: bold; text-align: right;">Total</td>
++                            <td style="padding: 10px; font-weight: bold; text-align: right; color: #4a6741; font-size: 18px;">${orderData.total_price} DA</td>
++                        </tr>
++                    </tfoot>
++                </table>
+ 
+-                <p>Vous recevrez une nouvelle notification d├¿s que vos dates de pressage seront fix├⌐es.</p>
++                <div style="background-color: #fcfcfc; padding: 15px; border-radius: 8px; border-left: 4px solid #4a6741; margin: 20px 0;">
++                    <p style="margin: 0;"><strong>Code de suivi :</strong> ${orderData.tracking_code}</p>
++                    <p style="margin: 5px 0 0 0; font-size: 14px; color: #666;">Utilisez ce code pour suivre l'├⌐tat de votre livraison sur notre site.</p>
++                </div>
+ 
+-                <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+-                <p style="text-align: center; font-weight: bold; color: #2D3748;">TAZDAYTH</p>
++                <p style="font-size: 14px; color: #888;">Si vous avez des questions, n'h├⌐sitez pas ├á nous contacter.</p>
+             </div>
+         `,
+     };
+@@ -171,40 +330,37 @@ export const sendPressingConfirmationEmail = async (email: string, pressingData:
+         const info = await transport.sendMail(mailOptions);
+         logEmailSent(email, info);
+     } catch (error: any) {
+-        console.error(`[MAIL] ├ëchec d'envoi confirmation pressage:`, error.message);
++        console.error(`[MAIL] Γ¥î ├ëchec d'envoi confirmation commande:`, error.message);
+     }
+ };
+ 
+-export const sendWelcomeEmail = async (email: string, name: string) => {
+-    console.log(`[MAIL] Envoi de l'email de bienvenue ├á: ${email}...`);
++/**
++ * Sends a confirmation for olive pressing requests.
++ */
++export const sendPressingConfirmationEmail = async (email: string, data: {
++    tracking_code: string;
++    quantity: number;
++    quality: string;
++}) => {
+     const transport = await getTransporter();
+ 
+     const mailOptions = {
+-        from: `"TAZDAYTH" <${process.env.EMAIL_USER}>`,
++        from: `"Moulin TAZDAYTH" <${process.env.EMAIL_USER}>`,
+         to: email,
+-        subject: 'Bienvenue chez TAZDAYTH ! ≡ƒî┐',
++        subject: `Demande de pressage re├ºue #${data.tracking_code} ≡ƒÜ£`,
+         html: `
+-            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+-                <div style="text-align: center; margin-bottom: 20px;">
+-                    <h1 style="color: #4A5568;">Bienvenue, ${name} !</h1>
+-                </div>
+-                <p>Nous sommes ravis de vous compter parmi nous chez <strong>TAZDAYTH</strong>, votre huilerie traditionnelle de confiance.</p>
+-                <div style="background-color: #F7FAFC; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #728056;">
+-                    <p style="margin: 0;">Votre compte est d├⌐sormais actif. Vous pouvez d├¿s ├á pr├⌐sent :</p>
+-                    <ul style="margin-top: 10px; color: #4A5568;">
+-                        <li>Commander nos huiles d'olive de qualit├⌐</li>
+-                        <li>Prendre rendez-vous pour le pressage de vos olives</li>
+-                        <li>Suivre l'avancement de vos demandes en temps r├⌐el</li>
+-                    </ul>
+-                </div>
+-                <div style="text-align: center; margin-top: 30px;">
+-                    <a href="${process.env.FRONTEND_URL || 'http://localhost:5173'}/boutique" style="background-color: #728056; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">D├⌐couvrir la boutique</a>
++            <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 30px; border: 1px solid #eee; border-radius: 10px;">
++                <h2 style="color: #4a6741;">Demande de pressage enregistr├⌐e</h2>
++                <p>Votre demande pour le pressage de <strong>${data.quantity} kg</strong> d'olives a ├⌐t├⌐ re├ºue.</p>
++                
++                <div style="margin: 20px 0; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
++                    <p style="margin: 0;"><strong>R├⌐f├⌐rence :</strong> #${data.tracking_code}</p>
++                    <p style="margin: 10px 0;"><strong>Qualit├⌐ vis├⌐e :</strong> ${data.quality === 'extra_virgin' ? 'Extra Vierge' : 'Vierge'}</p>
+                 </div>
+-                <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+-                <p style="text-align: center; font-size: 0.9em; color: #718096;">
+-                    L'├⌐quipe TAZDAYTH<br/>
+-                    <em>L'excellence de l'olivier, de la terre ├á votre table.</em>
+-                </p>
++
++                <p>Un administrateur va examiner votre demande et vous proposera prochainement une date pour apporter vos olives au moulin.</p>
++                
++                <p style="font-size: 14px; color: #888;">Vous recevrez une notification d├¿s qu'un cr├⌐neau sera disponible.</p>
+             </div>
+         `,
+     };
+@@ -213,19 +369,15 @@ export const sendWelcomeEmail = async (email: string, name: string) => {
+         const info = await transport.sendMail(mailOptions);
+         logEmailSent(email, info);
+     } catch (error: any) {
+-        console.error(`[MAIL] ├ëchec d'envoi email bienvenue:`, error.message);
++        console.error(`[MAIL] Γ¥î ├ëchec d'envoi confirmation pressage:`, error.message);
+     }
+ };
+ 
+ const logEmailSent = (email: string, info: any) => {
+     const previewUrl = nodemailer.getTestMessageUrl(info);
+     if (previewUrl) {
+-        console.log('\n' + '≡ƒô¼'.repeat(20));
+-        console.log(`EMAIL ENVOY├ë ├á ${email} ! Voir ici:`);
+-        console.log(`\n≡ƒæë  ${previewUrl}\n`);
+-        console.log('≡ƒô¼'.repeat(20) + '\n');
++        console.log(`[MAIL] ≡ƒöù Aper├ºu (Test): ${previewUrl}`);
+     } else {
+-        console.log(`[MAIL] Email envoy├⌐ ├á ${email} via SMTP r├⌐el.`);
++        console.log(`[MAIL] Γ£à Email envoy├⌐ avec succ├¿s ├á: ${email}`);
+     }
+ };
+-
+diff --git a/src/components/ui/button.tsx b/src/components/ui/button.tsx
+index cdedd4f..0ba4277 100644
+--- a/src/components/ui/button.tsx
++++ b/src/components/ui/button.tsx
+@@ -1,18 +1,21 @@
+-import * as React from "react";
+-import { Slot } from "@radix-ui/react-slot";
+-import { cva, type VariantProps } from "class-variance-authority";
++import * as React from "react"
++import { Slot } from "@radix-ui/react-slot"
++import { cva, type VariantProps } from "class-variance-authority"
+ 
+-import { cn } from "@/lib/utils";
++import { cn } from "@/lib/utils"
+ 
+ const buttonVariants = cva(
+-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
++  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+   {
+     variants: {
+       variant: {
+         default: "bg-primary text-primary-foreground hover:bg-primary/90",
+-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
++        destructive:
++          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
++        outline:
++          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
++        secondary:
++          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+         ghost: "hover:bg-accent hover:text-accent-foreground",
+         link: "text-primary underline-offset-4 hover:underline",
+       },
+@@ -27,21 +30,27 @@ const buttonVariants = cva(
+       variant: "default",
+       size: "default",
+     },
+-  },
+-);
++  }
++)
+ 
+ export interface ButtonProps
+   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+     VariantProps<typeof buttonVariants> {
+-  asChild?: boolean;
++  asChild?: boolean
+ }
+ 
+ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+   ({ className, variant, size, asChild = false, ...props }, ref) => {
+-    const Comp = asChild ? Slot : "button";
+-    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
+-  },
+-);
+-Button.displayName = "Button";
++    const Comp = asChild ? Slot : "button"
++    return (
++      <Comp
++        className={cn(buttonVariants({ variant, size, className }))}
++        ref={ref}
++        {...props}
++      />
++    )
++  }
++)
++Button.displayName = "Button"
+ 
+-export { Button, buttonVariants };
++export { Button, buttonVariants }
+diff --git a/src/components/ui/toast.tsx b/src/components/ui/toast.tsx
+index 0699548..d042624 100644
+--- a/src/components/ui/toast.tsx
++++ b/src/components/ui/toast.tsx
+@@ -1,11 +1,11 @@
+-import * as React from "react";
+-import * as ToastPrimitives from "@radix-ui/react-toast";
+-import { cva, type VariantProps } from "class-variance-authority";
+-import { X } from "lucide-react";
++import * as React from "react"
++import * as ToastPrimitives from "@radix-ui/react-toast"
++import { cva, type VariantProps } from "class-variance-authority"
++import { X } from "lucide-react"
+ 
+-import { cn } from "@/lib/utils";
++import { cn } from "@/lib/utils"
+ 
+-const ToastProvider = ToastPrimitives.Provider;
++const ToastProvider = ToastPrimitives.Provider
+ 
+ const ToastViewport = React.forwardRef<
+   React.ElementRef<typeof ToastPrimitives.Viewport>,
+@@ -15,35 +15,43 @@ const ToastViewport = React.forwardRef<
+     ref={ref}
+     className={cn(
+       "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+-      className,
++      className
+     )}
+     {...props}
+   />
+-));
+-ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
++))
++ToastViewport.displayName = ToastPrimitives.Viewport.displayName
+ 
+ const toastVariants = cva(
+-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
++  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full",
+   {
+     variants: {
+       variant: {
+         default: "border bg-background text-foreground",
+-        destructive: "destructive group border-destructive bg-destructive text-destructive-foreground",
++        destructive:
++          "destructive group border-destructive bg-destructive text-destructive-foreground",
+       },
+     },
+     defaultVariants: {
+       variant: "default",
+     },
+-  },
+-);
++  }
++)
+ 
+ const Toast = React.forwardRef<
+   React.ElementRef<typeof ToastPrimitives.Root>,
+-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>
++  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
++    VariantProps<typeof toastVariants>
+ >(({ className, variant, ...props }, ref) => {
+-  return <ToastPrimitives.Root ref={ref} className={cn(toastVariants({ variant }), className)} {...props} />;
+-});
+-Toast.displayName = ToastPrimitives.Root.displayName;
++  return (
++    <ToastPrimitives.Root
++      ref={ref}
++      className={cn(toastVariants({ variant }), className)}
++      {...props}
++    />
++  )
++})
++Toast.displayName = ToastPrimitives.Root.displayName
+ 
+ const ToastAction = React.forwardRef<
+   React.ElementRef<typeof ToastPrimitives.Action>,
+@@ -52,13 +60,13 @@ const ToastAction = React.forwardRef<
+   <ToastPrimitives.Action
+     ref={ref}
+     className={cn(
+-      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors group-[.destructive]:border-muted/40 hover:bg-secondary group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 group-[.destructive]:focus:ring-destructive disabled:pointer-events-none disabled:opacity-50",
+-      className,
++      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
++      className
+     )}
+     {...props}
+   />
+-));
+-ToastAction.displayName = ToastPrimitives.Action.displayName;
++))
++ToastAction.displayName = ToastPrimitives.Action.displayName
+ 
+ const ToastClose = React.forwardRef<
+   React.ElementRef<typeof ToastPrimitives.Close>,
+@@ -67,36 +75,44 @@ const ToastClose = React.forwardRef<
+   <ToastPrimitives.Close
+     ref={ref}
+     className={cn(
+-      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity group-hover:opacity-100 group-[.destructive]:text-red-300 hover:text-foreground group-[.destructive]:hover:text-red-50 focus:opacity-100 focus:outline-none focus:ring-2 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+-      className,
++      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50" ,
++      className
+     )}
+     toast-close=""
+     {...props}
+   >
+     <X className="h-4 w-4" />
+   </ToastPrimitives.Close>
+-));
+-ToastClose.displayName = ToastPrimitives.Close.displayName;
++))
++ToastClose.displayName = ToastPrimitives.Close.displayName
+ 
+ const ToastTitle = React.forwardRef<
+   React.ElementRef<typeof ToastPrimitives.Title>,
+   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
+ >(({ className, ...props }, ref) => (
+-  <ToastPrimitives.Title ref={ref} className={cn("text-sm font-semibold", className)} {...props} />
+-));
+-ToastTitle.displayName = ToastPrimitives.Title.displayName;
++  <ToastPrimitives.Title
++    ref={ref}
++    className={cn("text-sm font-semibold", className)}
++    {...props}
++  />
++))
++ToastTitle.displayName = ToastPrimitives.Title.displayName
+ 
+ const ToastDescription = React.forwardRef<
+   React.ElementRef<typeof ToastPrimitives.Description>,
+   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
+ >(({ className, ...props }, ref) => (
+-  <ToastPrimitives.Description ref={ref} className={cn("text-sm opacity-90", className)} {...props} />
+-));
+-ToastDescription.displayName = ToastPrimitives.Description.displayName;
++  <ToastPrimitives.Description
++    ref={ref}
++    className={cn("text-sm opacity-90", className)}
++    {...props}
++  />
++))
++ToastDescription.displayName = ToastPrimitives.Description.displayName
+ 
+-type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>;
++type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
+ 
+-type ToastActionElement = React.ReactElement<typeof ToastAction>;
++type ToastActionElement = React.ReactElement<typeof ToastAction>
+ 
+ export {
+   type ToastProps,
+@@ -108,4 +124,4 @@ export {
+   ToastDescription,
+   ToastClose,
+   ToastAction,
+-};
++}
+diff --git a/src/components/ui/toaster.tsx b/src/components/ui/toaster.tsx
+index 2cba1c8..de0669a 100644
+--- a/src/components/ui/toaster.tsx
++++ b/src/components/ui/toaster.tsx
+@@ -1,8 +1,15 @@
+-import { useToast } from "@/hooks/use-toast";
+-import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "@/components/ui/toast";
++import {
++  Toast,
++  ToastClose,
++  ToastDescription,
++  ToastProvider,
++  ToastTitle,
++  ToastViewport,
++} from "@/components/ui/toast"
++import { useToast } from "@/hooks/use-toast"
+ 
+ export function Toaster() {
+-  const { toasts } = useToast();
++  const { toasts } = useToast()
+ 
+   return (
+     <ToastProvider>
+@@ -11,14 +18,16 @@ export function Toaster() {
+           <Toast key={id} {...props}>
+             <div className="grid gap-1">
+               {title && <ToastTitle>{title}</ToastTitle>}
+-              {description && <ToastDescription>{description}</ToastDescription>}
++              {description && (
++                <ToastDescription>{description}</ToastDescription>
++              )}
+             </div>
+             {action}
+             <ToastClose />
+           </Toast>
+-        );
++        )
+       })}
+       <ToastViewport />
+     </ToastProvider>
+-  );
++  )
+ }
+diff --git a/src/components/ui/tooltip.tsx b/src/components/ui/tooltip.tsx
+index 2dece61..d379c42 100644
+--- a/src/components/ui/tooltip.tsx
++++ b/src/components/ui/tooltip.tsx
+@@ -1,28 +1,28 @@
+-import * as React from "react";
+-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
++import * as React from "react"
++import * as TooltipPrimitives from "@radix-ui/react-tooltip"
+ 
+-import { cn } from "@/lib/utils";
++import { cn } from "@/lib/utils"
+ 
+-const TooltipProvider = TooltipPrimitive.Provider;
++const TooltipProvider = TooltipPrimitives.Provider
+ 
+-const Tooltip = TooltipPrimitive.Root;
++const Tooltip = TooltipPrimitives.Root
+ 
+-const TooltipTrigger = TooltipPrimitive.Trigger;
++const TooltipTrigger = TooltipPrimitives.Trigger
+ 
+ const TooltipContent = React.forwardRef<
+-  React.ElementRef<typeof TooltipPrimitive.Content>,
+-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
++  React.ElementRef<typeof TooltipPrimitives.Content>,
++  React.ComponentPropsWithoutRef<typeof TooltipPrimitives.Content>
+ >(({ className, sideOffset = 4, ...props }, ref) => (
+-  <TooltipPrimitive.Content
++  <TooltipPrimitives.Content
+     ref={ref}
+     sideOffset={sideOffset}
+     className={cn(
+-      "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+-      className,
++      "z-[100] overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
++      className
+     )}
+     {...props}
+   />
+-));
+-TooltipContent.displayName = TooltipPrimitive.Content.displayName;
++))
++TooltipContent.displayName = TooltipPrimitives.Content.displayName
+ 
+-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };
++export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+diff --git a/src/pages/Connexion.tsx b/src/pages/Connexion.tsx
+index d63813d..e5432ec 100644
+--- a/src/pages/Connexion.tsx
++++ b/src/pages/Connexion.tsx
+@@ -11,7 +11,7 @@ import BackButton from "@/components/BackButton";
+ import heroImg from "@/assets/background-main-image.jpg";
+ import { useToast } from "@/hooks/use-toast";
+ import { useAuth } from "@/Context/AuthContext";
+-import { GoogleLogin } from '@react-oauth/google';
++import { useGoogleLogin } from '@react-oauth/google';
+ 
+ import { useTranslation } from "react-i18next";
+ 
+@@ -27,6 +27,31 @@ const Connexion = () => {
+   const [showPass, setShowPass] = useState(false); // Toggles password visibility
+   const [loading, setLoading] = useState(false);
+ 
++  /**
++   * Google Login via popup ΓÇö uses access_token flow instead of credential/JWT.
++   * This avoids the origin_mismatch issue with self-signed HTTPS certificates.
++   */
++  const triggerGoogleLogin = useGoogleLogin({
++    onSuccess: async (tokenResponse) => {
++      setLoading(true);
++      try {
++        // Send the access_token to our backend (different from credential flow)
++        await googleLogin(tokenResponse.access_token);
++        toast({ title: t("auth.login.success_title"), description: t("auth.login.google_success") });
++        
++        const redirect = searchParams.get("redirect") || "/boutique";
++        navigate(redirect, { replace: true });
++      } catch (err: any) {
++        toast({ title: t("auth.login.error_title"), description: err.message || t("auth.login.google_error"), variant: "destructive" });
++      } finally {
++        setLoading(false);
++      }
++    },
++    onError: () => {
++      toast({ title: t("auth.login.error_title"), description: t("auth.login.google_error"), variant: "destructive" });
++    },
++  });
++
+   /**
+    * handleSubmit
+    * Standard login flow with email and password.
+@@ -55,26 +80,6 @@ const Connexion = () => {
+     }
+   };
+ 
+-  /**
+-   * handleGoogleSuccess
+-   * Handles the response from the Google Login popup.
+-   */
+-  const handleGoogleSuccess = async (credentialResponse: any) => {
+-    setLoading(true);
+-    try {
+-      // Send the token received from Google to our backend
+-      await googleLogin(credentialResponse.credential);
+-      toast({ title: t("auth.login.success_title"), description: t("auth.login.google_success") });
+-      
+-      const redirect = searchParams.get("redirect") || "/boutique";
+-      navigate(redirect, { replace: true });
+-    } catch (err: any) {
+-      toast({ title: t("auth.login.error_title"), description: err.message || t("auth.login.google_error"), variant: "destructive" });
+-    } finally {
+-      setLoading(false);
+-    }
+-  };
+-
+   return (
+     <div className="min-h-screen grid lg:grid-cols-2">
+       <div className="hidden lg:block overflow-hidden">
+@@ -101,13 +106,19 @@ const Connexion = () => {
+           <p className="text-muted-foreground text-sm mb-8">{t("auth.login.subtitle")}</p>
+ 
+           <div className="mb-6 flex justify-center">
+-            <GoogleLogin
+-              onSuccess={handleGoogleSuccess}
+-              onError={() => {
+-                toast({ title: t("auth.login.error_title"), description: t("auth.login.google_error"), variant: "destructive" });
+-              }}
+-              useOneTap
+-            />
++            <button
++              type="button"
++              onClick={() => triggerGoogleLogin()}
++              className="flex items-center gap-3 w-full justify-center bg-white border border-gray-300 rounded-full px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:shadow-md transition-all"
++            >
++              <svg width="18" height="18" viewBox="0 0 24 24">
++                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
++                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
++                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
++                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
++              </svg>
++              {t("auth.login.google_btn") || "Se connecter avec Google"}
++            </button>
+           </div>
+ 
+           <div className="relative mb-6">
+diff --git a/src/pages/Inscription.tsx b/src/pages/Inscription.tsx
+index 560eb70..eb4fc34 100644
+--- a/src/pages/Inscription.tsx
++++ b/src/pages/Inscription.tsx
+@@ -11,7 +11,7 @@ import BackButton from "@/components/BackButton";
+ import heroImg from "@/assets/olive-img-2.jpg";
+ import { useToast } from "@/hooks/use-toast";
+ import { useAuth } from "@/Context/AuthContext";
+-import { GoogleLogin } from '@react-oauth/google';
++import { useGoogleLogin } from '@react-oauth/google';
+ 
+ import { useTranslation } from "react-i18next";
+ 
+@@ -26,6 +26,27 @@ const Inscription = () => {
+   const [showPass, setShowPass] = useState(false);
+   const [loading, setLoading] = useState(false);
+ 
++  /**
++   * Google Login via popup ΓÇö uses access_token flow.
++   */
++  const triggerGoogleLogin = useGoogleLogin({
++    onSuccess: async (tokenResponse) => {
++      setLoading(true);
++      try {
++        await googleLogin(tokenResponse.access_token);
++        toast({ title: t("auth.register.success_title"), description: t("auth.register.google_success") });
++        navigate("/boutique", { replace: true });
++      } catch (err: any) {
++        toast({ title: t("auth.register.error_title"), description: err.message || t("auth.register.google_error"), variant: "destructive" });
++      } finally {
++        setLoading(false);
++      }
++    },
++    onError: () => {
++      toast({ title: t("auth.register.error_title"), description: t("auth.register.google_error"), variant: "destructive" });
++    },
++  });
++
+   /**
+    * handleSubmit
+    * Creates a new user account on the server.
+@@ -63,23 +84,6 @@ const Inscription = () => {
+     }
+   };
+ 
+-  /**
+-   * handleGoogleSuccess
+-   * Simple registration via Google account.
+-   */
+-  const handleGoogleSuccess = async (credentialResponse: any) => {
+-    setLoading(true);
+-    try {
+-      await googleLogin(credentialResponse.credential);
+-      toast({ title: t("auth.register.success_title"), description: t("auth.register.google_success") });
+-      navigate("/boutique", { replace: true });
+-    } catch (err: any) {
+-      toast({ title: t("auth.register.error_title"), description: err.message || t("auth.register.google_error"), variant: "destructive" });
+-    } finally {
+-      setLoading(false);
+-    }
+-  };
+-
+   const update = (key: string, val: string) => setForm({ ...form, [key]: val });
+ 
+   return (
+@@ -108,13 +112,19 @@ const Inscription = () => {
+           <p className="text-muted-foreground text-sm mb-8">{t("auth.register.subtitle")}</p>
+ 
+           <div className="mb-6 flex justify-center">
+-            <GoogleLogin
+-              onSuccess={handleGoogleSuccess}
+-              onError={() => {
+-                toast({ title: t("auth.register.error_title"), description: t("auth.register.google_error"), variant: "destructive" });
+-              }}
+-              text="signup_with"
+-            />
++            <button
++              type="button"
++              onClick={() => triggerGoogleLogin()}
++              className="flex items-center gap-3 w-full justify-center bg-white border border-gray-300 rounded-full px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:shadow-md transition-all"
++            >
++              <svg width="18" height="18" viewBox="0 0 24 24">
++                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
++                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
++                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
++                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
++              </svg>
++              {t("auth.register.google_btn") || "S'inscrire avec Google"}
++            </button>
+           </div>
+ 
+           <div className="relative mb-6">
+diff --git a/vite.config.ts b/vite.config.ts
+index 3b095b3..3655e24 100644
+--- a/vite.config.ts
++++ b/vite.config.ts
+@@ -6,6 +6,7 @@ export default defineConfig({
+   server: {
+     host: "::",
+     port: 5173,
++    strictPort: true,
+     hmr: {
+       overlay: false,
+     },
