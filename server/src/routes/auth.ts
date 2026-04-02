@@ -5,6 +5,7 @@ import { body, validationResult } from 'express-validator';
 import { OAuth2Client } from 'google-auth-library';
 import { User } from '../models/User';
 import { sendResetEmail, sendWelcomeEmail } from '../utils/sendEmail';
+import { authenticate, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -35,6 +36,7 @@ router.post(
                 return;
             }
 
+            const isAdmin = email.toLowerCase() === (process.env.ADMIN_EMAIL || '').toLowerCase();
             const hashed = await bcrypt.hash(password, 12);
             const user = await User.create({
                 first_name,
@@ -42,10 +44,11 @@ router.post(
                 email,
                 phone,
                 password: hashed,
-                role: 'customer', // Always 'customer' to prevent privilege escalation
+                role: isAdmin ? 'owner' : 'customer',
             });
 
             // Send Welcome Email (non-blocking)
+            console.log(`[AUTH] Triggering welcome email for: ${email}`);
             sendWelcomeEmail(email, first_name).catch(err => console.error('[AUTH] Welcome email fail:', err));
 
             const token = jwt.sign(
@@ -101,6 +104,14 @@ router.post(
                 return;
             }
 
+            // check for admin promotion if email matches but role is still customer
+            const isAdmin = email.toLowerCase() === (process.env.ADMIN_EMAIL || '').toLowerCase();
+            if (isAdmin && user.role !== 'owner') {
+                user.role = 'owner';
+                await user.save();
+                console.log(`[AUTH] Promoted existing user ${email} to owner role`);
+            }
+
             const token = jwt.sign(
                 { id: user._id, role: user.role, is_subscribed: user.is_subscribed },
                 process.env.JWT_SECRET as string,
@@ -128,33 +139,64 @@ router.post(
 // POST /api/auth/google
 router.post(
     '/google',
-    [body('credential').notEmpty().withMessage('Token Google manquant')],
     async (req: any, res: Response): Promise<void> => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            res.status(400).json({ errors: errors.array() });
+        const { credential } = req.body;
+
+        if (!credential) {
+            res.status(400).json({ message: 'Token Google manquant' });
             return;
         }
 
-        const { credential } = req.body;
-
         try {
-            // Very Google ID Token
-            const ticket = await googleClient.verifyIdToken({
-                idToken: credential,
-                audience: process.env.GOOGLE_CLIENT_ID,
-            });
-            const payload = ticket.getPayload();
-            
-            if (!payload || !payload.email) {
+            let email: string | undefined;
+            let given_name: string | undefined;
+            let family_name: string | undefined;
+
+            // Try as access_token first (from useGoogleLogin popup flow)
+            try {
+                const userInfo: any = await new Promise((resolve, reject) => {
+                    const https = require('https');
+                    https.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${credential}`, (resp: any) => {
+                        let data = '';
+                        resp.on('data', (chunk: string) => { data += chunk; });
+                        resp.on('end', () => {
+                            try { resolve(JSON.parse(data)); } catch { reject(new Error('Invalid JSON')); }
+                        });
+                    }).on('error', reject);
+                });
+                if (userInfo.email) {
+                    email = userInfo.email;
+                    given_name = userInfo.given_name;
+                    family_name = userInfo.family_name;
+                }
+            } catch {
+                // Not an access_token, try as ID token below
+            }
+
+            // Fallback: try as ID token (from GoogleLogin component)
+            if (!email) {
+                const ticket = await googleClient.verifyIdToken({
+                    idToken: credential,
+                    audience: process.env.GOOGLE_CLIENT_ID,
+                });
+                const payload = ticket.getPayload();
+                if (!payload || !payload.email) {
+                    res.status(400).json({ message: 'Token Google invalide' });
+                    return;
+                }
+                email = payload.email;
+                given_name = payload.given_name;
+                family_name = payload.family_name;
+            }
+
+            if (!email) {
                 res.status(400).json({ message: 'Token Google invalide' });
                 return;
             }
 
-            const { email, given_name, family_name } = payload;
-
             // Check if user exists
             let user = await User.findOne({ email });
+            const isAdmin = email.toLowerCase() === (process.env.ADMIN_EMAIL || '').toLowerCase();
 
             // Create user if they don't exist
             if (!user) {
@@ -168,8 +210,16 @@ router.post(
                     email,
                     phone: '0000000000', // Default phone number since Google doesn't provide it
                     password: hashed,
-                    role: 'customer',
+                    role: isAdmin ? 'owner' : 'customer',
                 });
+
+                // NEW: Send Welcome Email for Google Users
+                sendWelcomeEmail(email, user.first_name).catch(err => console.error('[AUTH] Google Welcome email fail:', err));
+            } else if (isAdmin && user.role !== 'owner') {
+                // Promote existing Google user if they are now in the admin list
+                user.role = 'owner';
+                await user.save();
+                console.log(`[AUTH] Promoted existing Google user ${email} to owner role`);
             }
 
             // Generate JWT
@@ -271,5 +321,20 @@ router.post(
         }
     }
 );
+
+// GET /api/auth/me
+// Returns the current user's profile based on the JWT
+router.get('/me', authenticate, async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        const user = await User.findById(req.user?.id).select('-password');
+        if (!user) {
+            res.status(404).json({ message: 'Utilisateur non trouvé.' });
+            return;
+        }
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ message: 'Erreur serveur.' });
+    }
+});
 
 export default router;

@@ -133,6 +133,22 @@ router.patch('/:id/status', auth_1.authenticate, auth_1.ownerOnly, async (req, r
             title: 'Mise à jour de votre demande de pressage',
             message: `Le statut de votre demande de pressage est maintenant : ${status}.`,
         });
+
+        // EMAIL NOTIFICATION
+        (async () => {
+            try {
+                const user = await User_1.User.findById(request.user_id);
+                if (user && user.email) {
+                    await (0, sendEmail_1.sendNotificationEmail)(
+                        user.email,
+                        '🌿 Mise à jour de votre demande de pressage - TAZDAYTH',
+                        `Bonjour ${user.first_name}, bonne nouvelle ! Votre demande #${request.tracking_code} est maintenant : **${status}**.`
+                    );
+                }
+            } catch (err) {
+                console.error('Pressing status email error:', err);
+            }
+        })();
         res.json(request);
     }
     catch {
@@ -175,6 +191,22 @@ router.patch('/:id/appointment', auth_1.authenticate, auth_1.ownerOnly, [
             title: 'Dates de pressage programmées',
             message: `Vos dates ont été fixées : ${datesMessage}`,
         });
+
+        // EMAIL NOTIFICATION
+        (async () => {
+            try {
+                const user = await User_1.User.findById(request.user_id);
+                if (user && user.email) {
+                    await (0, sendEmail_1.sendNotificationEmail)(
+                        user.email,
+                        '📅 Votre rendez-vous au moulin TAZDAYTH',
+                        `Bonjour ${user.first_name}, vos dates de pressage ont été fixées : \n\n${datesMessage} \n\nÀ très bientôt au moulin !`
+                    );
+                }
+            } catch (err) {
+                console.error('Pressing appointment email error:', err);
+            }
+        })();
         res.json(request);
     }
     catch {

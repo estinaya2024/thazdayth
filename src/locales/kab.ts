@@ -154,7 +154,7 @@ export const kab = {
             desc: "Zzit tetteɛeddi ɣef iseffayen akken ad yekkes akk ayen n diri i d-yegran deg-s.",
         },
         step8: {
-            title: "8️cd  Aḥraz",
+            title: "8️ Aḥraz",
             desc: "Zzit tetteḥraz deg teryal n uzzal (inox) di lkanun akken ur tt-tettḥaz ara tafat neɣ lḥama, iwakken ad tili d taheyyit i uɛemmer.",
         },
         video: {

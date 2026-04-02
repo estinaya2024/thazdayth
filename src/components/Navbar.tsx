@@ -9,7 +9,17 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User, Globe, Check, ShoppingBag } from "lucide-react";
+import { 
+  Menu, 
+  X, 
+  User, 
+  Globe, 
+  Check, 
+  ShoppingBag, 
+  LogOut, 
+  Bell, 
+  LayoutDashboard 
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
@@ -17,7 +27,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { LogOut, Bell } from "lucide-react";
 
 import { useAuth } from "@/Context/AuthContext";
 import NotificationDrawer from "./NotificationDrawer";
@@ -287,10 +296,15 @@ const Navbar = ({ className = "", onNotificationClick }: { className?: string, o
                 </div>
                 {isAuthenticated ? (
                   <div className="flex flex-col items-center gap-6 pt-4 border-t w-full border-border">
-                    {/* Dashboard is now exclusively accessed via the connexion icon/dropdown */}
-                    <Link to="/suivi" className="text-xl font-bold flex items-center gap-2 text-foreground">
+                    {user?.role === 'owner' && (
+                      <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="text-xl font-bold flex items-center gap-2 text-primary">
+                        <LayoutDashboard className="w-5 h-5" />
+                        {t("nav.dashboard", "Tableau de bord")}
+                      </Link>
+                    )}
+                    <Link to="/suivi" onClick={() => setMenuOpen(false)} className="text-xl font-bold flex items-center gap-2 text-foreground">
                         <ShoppingBag className="w-5 h-5" />
-                        {t("nav.tracking", "Suivi")}
+                        {t("nav.tracking", "Suivre ma commande")}
                     </Link>
                     <button onClick={() => { logout(); setMenuOpen(false); }} className="text-xl font-bold text-red-500 flex items-center gap-2">
                       <LogOut className="w-5 h-5" />

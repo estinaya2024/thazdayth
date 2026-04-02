@@ -44,19 +44,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [token, setToken] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    /**
-     * SESSION RESTORATION
-     * When the user refreshes the page, we check if they were already logged in
-     * by looking at the browser's localStorage.
-     */
-    useEffect(() => {
-        const storedToken = localStorage.getItem('token');
-        const storedUser = localStorage.getItem('user');
-        if (storedToken && storedUser) {
-            setToken(storedToken);
-            setUser(JSON.parse(storedUser));
-        }
-        setIsLoading(false);
+    const logout = useCallback(() => {
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('isAuthenticated');
     }, []);
 
     const login = useCallback(async (email: string, password: string) => {
@@ -178,13 +171,46 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return json;
     }, []);
 
-    const logout = useCallback(() => {
-        setUser(null);
-        setToken(null);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        localStorage.removeItem('isAuthenticated');
-    }, []);
+    /**
+     * SESSION RESTORATION
+     * When the user refreshes the page, we check if they were already logged in
+     * by looking at the browser's localStorage and verifying the token with the server.
+     */
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        const storedUser = localStorage.getItem('user');
+
+        if (storedToken && storedUser) {
+            // Preliminarily set the user for immediate UI feedback
+            setToken(storedToken);
+            setUser(JSON.parse(storedUser));
+
+            // Verify the session with the server in the background
+            const verifySession = async () => {
+                try {
+                    const res = await fetch(`${API_URL}/auth/me`, {
+                        headers: { Authorization: `Bearer ${storedToken}` }
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        setUser(data);
+                        localStorage.setItem('user', JSON.stringify(data));
+                    } else {
+                        // Stale or invalid session
+                        logout();
+                    }
+                } catch (err) {
+                    // Possible network issue, keep the current state
+                    console.error('Session verification fail:', err);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+            verifySession();
+        } else {
+            setIsLoading(false);
+        }
+    }, [logout]);
 
     return (
         <AuthContext.Provider

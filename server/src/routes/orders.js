@@ -184,6 +184,22 @@ router.patch('/:id/status', auth_1.authenticate, auth_1.ownerOnly, async (req, r
             title: 'Mise à jour de votre commande',
             message: `Le statut de votre commande est maintenant : ${status}.`,
         });
+
+        // EMAIL NOTIFICATION
+        (async () => {
+            try {
+                const user = await User_1.User.findById(order.user_id);
+                if (user && user.email) {
+                    await (0, sendEmail_1.sendNotificationEmail)(
+                        user.email,
+                        'Mise à jour de votre commande - TAZDAYTH',
+                        `Bonjour ${user.first_name}, le statut de votre commande #${order.tracking_code} a été mis à jour : **${status}**.`
+                    );
+                }
+            } catch (err) {
+                console.error('Order status email error:', err);
+            }
+        })();
         res.json(order);
     }
     catch (error) {
@@ -216,6 +232,22 @@ router.patch('/:id/pickup', auth_1.authenticate, auth_1.ownerOnly, async (req, r
             title: '📅 Disponibilité de votre commande',
             message: `Vous pouvez récupérer votre commande entre le ${new Date(pickup_range_start).toLocaleDateString()} et le ${new Date(pickup_range_end).toLocaleDateString()} (${pickup_hours}).`,
         });
+
+        // EMAIL NOTIFICATION
+        (async () => {
+            try {
+                const user = await User_1.User.findById(order.user_id);
+                if (user && user.email) {
+                    await (0, sendEmail_1.sendNotificationEmail)(
+                        user.email,
+                        '📅 Créneau de récupération disponible - TAZDAYTH',
+                        `Bonne nouvelle ${user.first_name} ! Votre commande #${order.tracking_code} est prête. \n\nVous pouvez venir la récupérer entre le **${new Date(pickup_range_start).toLocaleDateString()}** et le **${new Date(pickup_range_end).toLocaleDateString()}** (${pickup_hours}).`
+                    );
+                }
+            } catch (err) {
+                console.error('Pickup proposal email error:', err);
+            }
+        })();
         res.json(order);
     }
     catch (error) {

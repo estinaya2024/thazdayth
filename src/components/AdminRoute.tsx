@@ -1,3 +1,4 @@
+import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/Context/AuthContext";
 
@@ -11,26 +12,25 @@ interface AdminRouteProps {
   children: React.ReactNode;
 }
 
-const AdminRoute = ({ children }: AdminRouteProps) => {
+const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
   const { isAuthenticated, user, isLoading } = useAuth();
   const location = useLocation();
 
   if (isLoading) {
-    console.log("[AdminRoute] Loading auth state...");
-    return <div className="h-screen w-full flex items-center justify-center">Chargement...</div>;
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-sm font-medium text-muted-foreground">Chargement...</p>
+        </div>
+      </div>
+    );
   }
-
-  console.log("[AdminRoute] Checking access:", { isAuthenticated, role: user?.role });
 
   if (!isAuthenticated || user?.role !== "owner") {
-    console.warn("[AdminRoute] Access denied. Redirecting to home.", { 
-      reason: !isAuthenticated ? "Not authenticated" : `Invalid role: ${user?.role}` 
-    });
     // If not admin, redirect to home
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
-
-  console.log("[AdminRoute] Access granted to dashboard.");
 
   return <>{children}</>;
 };
