@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
 
     // Tabs & UI State
     const [activeTab, setActiveTab] = useState<
-        "overview" | "products" | "orders" | "pressing" | "availability" | "archive"
+        "overview" | "products" | "orders" | "pressing" | "clients" | "availability" | "archive"
     >("overview");
     const [searchTerm, setSearchTerm] = useState("");
     const [highlightedId, setHighlightedId] = useState<string | null>(null);
@@ -166,6 +166,7 @@ const Dashboard: React.FC = () => {
                         { id: "products", label: t("dashboard.tabs.products"), icon: Package },
                         { id: "orders", label: t("dashboard.tabs.orders"), icon: ShoppingBag },
                         { id: "pressing", label: t("dashboard.tabs.pressing"), icon: Factory },
+                        { id: "clients", label: "Clients", icon: UsersIcon },
                         { id: "availability", label: t("dashboard.tabs.availability"), icon: Calendar },
                         { id: "archive", label: t("dashboard.tabs.archive"), icon: Archive },
                     ].map((tab) => (
@@ -270,6 +271,15 @@ const Dashboard: React.FC = () => {
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
                                     highlightedId={highlightedId}
+                                />
+                            )}
+
+                            {activeTab === "clients" && (
+                                <UserManager 
+                                    users={allUsers}
+                                    searchTerm={searchTerm}
+                                    setSearchTerm={setSearchTerm}
+                                    onRefresh={fetchAllData}
                                 />
                             )}
 
