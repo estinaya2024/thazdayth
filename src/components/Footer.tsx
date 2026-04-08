@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Youtube } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const getMenuLinks = (t: any) => [
@@ -29,7 +29,7 @@ const Footer = () => {
               {t("footer.contact")}
             </p>
             <a href="mailto:info@tazdayth.dz" className="text-accent text-sm underline underline-offset-2 block mb-1">
-              info@tazdayth.dz
+              thazdaythhuilerie@gmail.com
             </a>
             <a href="tel:+213555123456" className="text-accent text-sm underline underline-offset-2 block mb-3">
               +213 555 123 456
@@ -70,9 +70,6 @@ const Footer = () => {
               </a>
               <a href="#" className="w-9 h-9 rounded-full bg-background/90 flex items-center justify-center hover:bg-background transition-colors text-foreground">
                 <Facebook className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-background/90 flex items-center justify-center hover:bg-background transition-colors text-foreground">
-                <Youtube className="w-4 h-4" />
               </a>
             </div>
           </div>

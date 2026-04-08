@@ -88,6 +88,8 @@ const Boutique = () => {
   const [producerPercentage, setProducerPercentage] = useState(30);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [blockedDates, setBlockedDates] = useState<any[]>([]);
+  const [pickupDate, setPickupDate] = useState<Date | undefined>(undefined);
 
   /**
    * fetchBoutiqueData
@@ -124,12 +126,20 @@ const Boutique = () => {
       }
 
       const [wilayasData, oliveData, pressingData, settingsData, productsData] = await Promise.all([
-        wilayasRes.json(),
-        oliveRes.json(),
-        pressingRes.json(),
-        settingsRes.json(),
-        productsRes.json()
+        wilayasRes.text().then(t => t ? JSON.parse(t) : []),
+        oliveRes.text().then(t => t ? JSON.parse(t) : []),
+        pressingRes.text().then(t => t ? JSON.parse(t) : []),
+        settingsRes.text().then(t => t ? JSON.parse(t) : {}),
+        productsRes.text().then(t => t ? JSON.parse(t) : [])
       ]);
+
+      const blockedData = await fetch(`${API_URL}/availability`).then(res => {
+        if (!res.ok) return [];
+        return res.text().then(text => {
+          if (!text || text.trim() === '') return [];
+          try { return JSON.parse(text); } catch { return []; }
+        });
+      }).catch(() => []);
 
       setDbWilayas(wilayasData.map((w: any) => ({
         code: w.wilaya_code,
@@ -140,6 +150,7 @@ const Boutique = () => {
       setProducts(productsData.map((p: any) => ({ ...p, model_type: 'Product', stock_liters: p.stock_liters || 0 })));
       setPressingServices(pressingData);
       setProducerPercentage(settingsData.pressing_percentage_taken || 30);
+      setBlockedDates(blockedData || []);
     } catch (err: any) {
       console.error("Failed to fetch boutique data:", err);
       setError(err.message || "Une erreur est survenue");
@@ -270,6 +281,10 @@ const Boutique = () => {
       toast({ title: t("boutique.form.wilaya_error_title"), description: t("boutique.form.wilaya_error_desc"), variant: "destructive" });
       return;
     }
+    if (deliveryMethod === "pickup" && !pickupDate) {
+      toast({ title: "Date de retrait manquante", description: "Veuillez sélectionner une date pour le retrait de votre commande.", variant: "destructive" });
+      return;
+    }
     setSubmitting(true);
     try {
       const res = await fetch(`${API_URL}/orders`, {
@@ -291,6 +306,7 @@ const Boutique = () => {
             type: deliveryMethod,
             wilaya: deliveryMethod === "delivery" ? selectedWilaya?.name : undefined,
             cost: shipping,
+            pickup_date: pickupDate,
           },
           total_price: buyTotal
         }),
@@ -682,11 +698,52 @@ const Boutique = () => {
                         </select>
                       </div>
                     ) : (
-                      <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex gap-3">
-                        <Clock className="w-5 h-5 text-primary shrink-0" />
-                        <div>
-                          <p className="text-sm font-bold text-foreground mb-1">{t("boutique.pickup_notice.title")}</p>
-                          <p className="text-xs text-muted-foreground">{t("boutique.pickup_notice.desc")}</p>
+                      <div className="space-y-6">
+                        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex gap-3">
+                          <Clock className="w-5 h-5 text-primary shrink-0" />
+                          <div>
+                            <p className="text-sm font-bold text-foreground mb-1">{t("boutique.pickup_notice.title")}</p>
+                            <p className="text-xs text-muted-foreground">{t("boutique.pickup_notice.desc")}</p>
+                          </div>
+                        </div>
+
+                        <div className="bg-secondary/30 rounded-2xl p-6 border border-border/50">
+                          <label className="text-xs font-bold text-muted-foreground uppercase tracking-widest block mb-4">
+                            Choisir une date de retrait
+                          </label>
+                          <div className="flex justify-center bg-background rounded-xl p-2 border border-border/30 shadow-inner">
+                            <PickupCalendar
+                              mode="single"
+                              selected={pickupDate}
+                              onSelect={setPickupDate}
+                              disabled={(date) => {
+                                // Disable past dates
+                                if (date < new Date(new Date().setHours(0,0,0,0))) return true;
+                                // Disable blocked dates
+                                return blockedDates.some(bd => 
+                                  new Date(bd.date).setHours(0,0,0,0) === new Date(date).setHours(0,0,0,0)
+                                );
+                              }}
+                              modifiers={{
+                                blocked: blockedDates.map(d => new Date(d.date))
+                              }}
+                              modifiersStyles={{
+                                blocked: { 
+                                  backgroundColor: '#fee2e2', 
+                                  color: '#dc2626', 
+                                  fontWeight: '900', 
+                                  borderRadius: '50%',
+                                  textDecoration: 'line-through'
+                                }
+                              }}
+                              className="rounded-md border-none"
+                            />
+                          </div>
+                          {pickupDate && (
+                            <p className="mt-4 text-xs font-medium text-center text-primary">
+                              Date sélectionnée : {pickupDate.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                            </p>
+                          )}
                         </div>
                       </div>
                     )}
@@ -891,5 +948,8 @@ const Boutique = () => {
     </div>
   );
 };
+
+// Internal component import for calendar
+import { Calendar as PickupCalendar } from "@/components/ui/calendar";
 
 export default Boutique;

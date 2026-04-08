@@ -164,10 +164,13 @@ const Suivi = () => {
                 throw new Error("Erreur lors du chargement de vos suivis.");
             }
 
-            const [ordersData, pressingData] = await Promise.all([
-                ordersRes.json(),
-                pressingRes.json()
+            const [ordersText, pressingText] = await Promise.all([
+                ordersRes.text(),
+                pressingRes.text()
             ]);
+
+            const ordersData = ordersText ? JSON.parse(ordersText) : [];
+            const pressingData = pressingText ? JSON.parse(pressingText) : [];
 
             setOrders(ordersData);
             setPressingRequests(pressingData);
@@ -201,20 +204,7 @@ const Suivi = () => {
         }
     }, [token]);
 
-    const handlePickupAction = async (orderId: string, action: 'accept' | 'reject') => {
-        try {
-            const res = await fetch(`${API_URL}/orders/${orderId}/pickup/${action}`, {
-                method: 'PATCH',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (res.ok) {
-                const updatedOrder = await res.json();
-                setOrders(prev => prev.map(o => o._id === orderId ? updatedOrder : o));
-            }
-        } catch (err) {
-            console.error(`Error ${action}ing pickup:`, err);
-        }
-    };
+    // handlePickupAction removed as it's no longer needed with the new calendar system
 
     const getStatusIcon = (status: OrderStatus | PressingStatus) => {
         switch (status) {
@@ -399,45 +389,23 @@ const Suivi = () => {
                                                                             <p className="text-xs">{t("boutique.form.wilaya")}: <span className="text-foreground font-medium">{order.shipping?.wilaya}</span></p>
                                                                             <p className="text-xs mt-1">{t("suivi.sections.shipping_cost")}: <span className="text-foreground font-medium">{order.shipping?.cost?.toLocaleString() || "0"} DA</span></p>
                                                                         </div>) : 
-                                                                        (order.shipping?.pickup_range_start ? (
-                                                                            <div className="flex flex-col gap-3 mt-1">
-                                                                                <div className="flex flex-col gap-1">
-                                                                                    <span className="text-primary font-bold text-xs">{t("suivi.pickup.available_from", { start: order.shipping.pickup_range_start ? new Date(order.shipping.pickup_range_start).toLocaleDateString() : '...', end: order.shipping.pickup_range_end ? new Date(order.shipping.pickup_range_end).toLocaleDateString() : '...' })}</span>
-                                                                                    <span className="flex items-center gap-1.5 text-[10px]"><Clock className="w-3 h-3" /> {order.shipping.pickup_hours}</span>
+                                                                        (order.shipping?.pickup_date ? (
+                                                                            <div className="flex flex-col gap-1 mt-1">
+                                                                                <span className="text-primary font-bold text-xs">
+                                                                                    {t("suivi.pickup.scheduled_for", { date: new Date(order.shipping.pickup_date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }) || `Retrait prévu le ${new Date(order.shipping.pickup_date).toLocaleDateString()}`}
+                                                                                </span>
+                                                                                <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                                                                                    <MapPin className="w-3 h-3" />
+                                                                                    Moulin TAZDAYTH
                                                                                 </div>
-                                                                                
-                                                                                {order.shipping.pickup_status === 'proposed' && (
-                                                                                    <div className="flex gap-2">
-                                                                                        <button 
-                                                                                            onClick={() => handlePickupAction(order._id, 'accept')}
-                                                                                            className="px-4 py-1.5 bg-green-500 text-white text-xs font-bold rounded-full hover:bg-green-600 transition-colors shadow-sm"
-                                                                                        >
-                                                                                            {t("suivi.pickup.btn_accept")}
-                                                                                        </button>
-                                                                                        <button 
-                                                                                            onClick={() => handlePickupAction(order._id, 'reject')}
-                                                                                            className="px-4 py-1.5 bg-red-500 text-white text-xs font-bold rounded-full hover:bg-red-600 transition-colors shadow-sm"
-                                                                                        >
-                                                                                            {t("suivi.pickup.btn_reject")}
-                                                                                        </button>
-                                                                                    </div>
-                                                                                )}
-
-                                                                                {order.shipping.pickup_status === 'accepted' && (
-                                                                                    <span className="text-green-500 font-bold text-xs flex items-center gap-1">
-                                                                                        <CheckCircle2 className="w-3 h-3" /> {t("suivi.pickup.status_accepted")}
-                                                                                    </span>
-                                                                                )}
-
-                                                                                {order.shipping.pickup_status === 'rejected' && (
-                                                                                    <span className="text-red-500 font-bold text-xs flex items-center gap-1">
-                                                                                        <XCircle className="w-3 h-3" /> {t("suivi.pickup.status_rejected")}
-                                                                                    </span>
-                                                                                )}
+                                                                            </div>
+                                                                        ) : (order.shipping?.pickup_range_start ? (
+                                                                            <div className="flex flex-col gap-1 mt-1">
+                                                                                <span className="text-amber-600 font-bold text-xs italic">Ancienne commande : Retrait entre le {new Date(order.shipping.pickup_range_start).toLocaleDateString()} et le {new Date(order.shipping.pickup_range_end!).toLocaleDateString()}</span>
                                                                             </div>
                                                                         ) : (
                                                                             <span className="text-amber-500 font-medium italic text-xs">{t("suivi.pickup.pending")}</span>
-                                                                        ))
+                                                                        )))
                                                                     }
                                                                 </div>
                                                             </div>

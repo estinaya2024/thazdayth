@@ -67,6 +67,13 @@ router.post('/', auth_1.authenticate, [
         return;
     }
     try {
+        // 0. BLACKLIST CHECK: Ensure the user is not banned from ordering
+        const user = await User_1.User.findById(req.user.id);
+        if (user && user.is_blacklisted) {
+            res.status(403).json({ message: 'Votre compte est restreint. Vous ne pouvez pas passer de commande.' });
+            return;
+        }
+
         const { items, shipping, total_price } = req.body;
         // 1. STOCK CHECK: Verify we have enough oil/bottles before accepting the order
         for (const item of items) {
@@ -90,7 +97,9 @@ router.post('/', auth_1.authenticate, [
         const order = await Order_1.Order.create({
             user_id: req.user.id,
             items,
-            shipping,
+            shipping: shipping?.type === 'pickup' && shipping?.pickup_date 
+                ? { ...shipping, pickup_status: 'accepted' } 
+                : shipping,
             total_price,
             tracking_code,
             status: 'pending',
@@ -208,7 +217,7 @@ router.patch('/:id/status', auth_1.authenticate, auth_1.ownerOnly, async (req, r
     }
 });
 /**
- * [ADMIN] Propose Pickup Dates
+ * [ADMIN] Propose Pickup Dates (DEPRECATED: Use the new calendar availability system)
  * When an owner decides when the customer can come pick up their oil.
  */
 router.patch('/:id/pickup', auth_1.authenticate, auth_1.ownerOnly, async (req, res) => {

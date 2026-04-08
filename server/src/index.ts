@@ -27,6 +27,7 @@ import notificationRoutes from './routes/notifications';
 import commentRoutes from './routes/comments';
 import pricesRoutes from './routes/prices';
 import userRoutes from './routes/users';
+import availabilityRoutes from './routes/availability';
 
 // Initialize environment variables
 dotenv.config();
@@ -102,6 +103,7 @@ app.use('/api/notifications', notificationRoutes); // User alerts
 app.use('/api/comments', commentRoutes); // User reviews/feedback
 app.use('/api/prices', pricesRoutes); // Dynamic price management
 app.use('/api/users', userRoutes); // Administrator user management
+app.use('/api/availability', availabilityRoutes); // Blocked pickup dates
 
 // SERVING THE FRONTEND
 // In production, the backend also sends the HTML/JS for the website

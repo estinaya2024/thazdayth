@@ -82,6 +82,8 @@ export const kab = {
         },
         story: {
             badge: "Tamacahut-nneɣ",
+            title: "Agerruj n Tzemrin",
+            desc: "Zzdat n yidurar icebḥen n leqbayel, abrid-nneɣ yebda s lḥubb n lqima d leqder ameqqran i ugama. Mkull tiqqit n zzit-nneɣ tettawi-d tamacahut n wakal-nneɣ n zik.",
             text1_bold: "Zzdat n yidurar icebḥen n leqbayel,",
             text1: "abrid-nneɣ yebda s lḥubb n lqima d leqder ameqqran i ugama. S uwelleh n lejdud-nneɣ, nebda nexdem zzit n uzemmur n tazzayt yufraren yettmektayen-d ccan n tmurt-a.",
             text2: "Taqerɛet mkul n zzit n uzemmur tettawi yid-s lqima n leqder n wakal d lḥirfa yufraren yellan d lsas n ubrid-nneɣ."

@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
 
     // Tabs & UI State
     const [activeTab, setActiveTab] = useState<
-        "overview" | "products" | "orders" | "pressing" | "agenda" | "agenda_pressing" | "agenda_contacts" | "archive"
+        "overview" | "products" | "orders" | "pressing" | "availability" | "archive"
     >("overview");
     const [searchTerm, setSearchTerm] = useState("");
     const [highlightedId, setHighlightedId] = useState<string | null>(null);
@@ -166,9 +166,7 @@ const Dashboard: React.FC = () => {
                         { id: "products", label: t("dashboard.tabs.products"), icon: Package },
                         { id: "orders", label: t("dashboard.tabs.orders"), icon: ShoppingBag },
                         { id: "pressing", label: t("dashboard.tabs.pressing"), icon: Factory },
-                        { id: "agenda", label: t("dashboard.tabs.agenda"), icon: ClipboardList },
-                        { id: "agenda_pressing", label: t("dashboard.tabs.agenda_pressing"), icon: Calendar },
-                        { id: "agenda_contacts", label: t("dashboard.tabs.agenda_contacts"), icon: UsersIcon },
+                        { id: "availability", label: t("dashboard.tabs.availability"), icon: Calendar },
                         { id: "archive", label: t("dashboard.tabs.archive"), icon: Archive },
                     ].map((tab) => (
                         <button
@@ -275,7 +273,7 @@ const Dashboard: React.FC = () => {
                                 />
                             )}
 
-                            {activeTab.startsWith("agenda") && (
+                            {activeTab === "availability" && (
                                 <AgendaManager 
                                     orders={orders}
                                     pressingRequests={pressingRequests}
@@ -284,7 +282,7 @@ const Dashboard: React.FC = () => {
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
                                     setActiveTab={setActiveTab}
-                                    view={activeTab === "agenda_pressing" ? "pressing" : activeTab === "agenda_contacts" ? "contacts" : "all"}
+                                    view="availability"
                                 />
                             )}
 

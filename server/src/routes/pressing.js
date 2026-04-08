@@ -60,6 +60,13 @@ router.post('/', auth_1.authenticate, [
         return;
     }
     try {
+        // 0. BLACKLIST CHECK: Ensure the user is not banned from reserving a pressing
+        const user = await User_1.User.findById(req.user.id);
+        if (user && user.is_blacklisted) {
+            res.status(403).json({ message: 'Votre compte est restreint. Vous ne pouvez pas réserver de pressage.' });
+            return;
+        }
+
         const { olive_quantity_kg, oil_quality, yield: yieldData, payment, bring_olives_date, collect_oil_date } = req.body;
         // Business Rule: We don't accept small batches under 50kg
         if (olive_quantity_kg < 50) {

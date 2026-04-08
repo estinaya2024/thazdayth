@@ -43,7 +43,14 @@ export const useApi = () => {
                 body: body ? JSON.stringify(body) : undefined,
             });
 
-            const data = await response.json();
+            const responseText = await response.text();
+            let data: any;
+            try {
+                data = responseText ? JSON.parse(responseText) : null;
+            } catch (e) {
+                console.error('Error parsing JSON response:', e);
+                data = null;
+            }
 
             if (!response.ok) {
                 // If unauthorized (401), we automatically logout

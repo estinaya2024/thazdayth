@@ -29,7 +29,15 @@ export const fr = {
         empty_orders: "Vous n'avez pas encore passé de commande.",
         empty_pressing: "Vous n'avez pas de demande de trituration.",
         shop_link: "Aller à la boutique",
-        search_placeholder: "Rechercher par numéro de commande ou statut...",
+        search_placeholder: "Rechercher une date, un nom...",
+        pickups: "Retraits & Livraisons",
+        availability: {
+            title: "Gestion des Disponibilités",
+            calendar_title: "Calendrier d'Indisponibilité",
+            blocked_dates: "Dates Bloquées",
+            no_blocked: "Aucune date bloquée.",
+            click_to_block: "Cliquez sur une date pour la marquer comme indisponible."
+        },
         order_num: "Commande #",
         pressing_num: "Réservation #",
         status: {
@@ -83,6 +91,8 @@ export const fr = {
         },
         story: {
             badge: "Notre Histoire",
+            title: "Un Héritage d'Excellence",
+            desc: "Nichée dans les paysages majestueux de Kabylie, notre aventure a commencé avec une passion pour la qualité et un profond respect pour la nature. Chaque goutte de notre huile raconte l'histoire d'un terroir millénaire.",
             text1_bold: "Nichée dans les paysages majestueux de Kabylie,",
             text1: "notre aventure a commencé avec une passion pour la qualité et un profond respect pour la nature. Inspirés par des générations d'oléiculteurs, nous avons entrepris de produire une huile d'olive biologique premium qui reflète le riche patrimoine de cette belle région.",
             text2: "Chaque bouteille de notre huile d'olive porte l'essence de notre engagement envers des pratiques agricoles durables et le savoir-faire minutieux qui définit notre approche."
@@ -551,9 +561,10 @@ export const fr = {
             orders: "Commandes",
             pressing: "Pressage",
             agenda: "Agenda",
-            agenda_pressing: "Agenda Pressing",
-            agenda_contacts: "Clients",
-            archive: "Archives"
+            agenda_pressing: "Agenda Pressage",
+            agenda_contacts: "Contacts & Clients",
+            availability: "Disponibilité",
+            archive: "Archives & Historique"
         },
         pickup_modal: {
             title: "Programmer la récupération",
@@ -583,7 +594,13 @@ export const fr = {
             type_pressing: "Pressage",
             client: "Client",
             contact: "Contact",
-            quantity: "Quantité"
+            quantity: "Quantité",
+            availability: {
+                calendar_title: "Gestion des Jours de Fermeture",
+                blocked_dates: "Historique des dates bloquées",
+                no_blocked: "Toutes les dates sont actuellement disponibles.",
+                click_to_block: "Sélectionnez une date pour bloquer les retraits boutique ce jour-là."
+            }
         },
         agenda_pressing: {
             title: "Agenda des Pressages",

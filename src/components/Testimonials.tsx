@@ -42,7 +42,8 @@ const Testimonials = () => {
                 throw new Error("Erreur de chargement des avis.");
             }
             
-            const data = await res.json();
+            const text = await res.text();
+            const data = text ? JSON.parse(text) : [];
             setComments(data);
         } catch (err: any) {
             console.error("Error fetching comments:", err);
@@ -81,7 +82,8 @@ const Testimonials = () => {
                 setRating(5);
                 fetchComments();
             } else {
-                const data = await res.json();
+                const text = await res.text();
+                const data = text ? JSON.parse(text) : {};
                 throw new Error(data.message || "Erreur lors de la publication.");
             }
         } catch (err: any) {
@@ -106,7 +108,8 @@ const Testimonials = () => {
                 toast({ title: "Supprimé", description: "Le commentaire a été supprimé." });
                 fetchComments();
             } else {
-                const data = await res.json();
+                const text = await res.text();
+                const data = text ? JSON.parse(text) : {};
                 throw new Error(data.message || "Erreur lors de la suppression.");
             }
         } catch (err: any) {

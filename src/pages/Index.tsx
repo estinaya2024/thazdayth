@@ -102,29 +102,39 @@ const Index = () => {
       <section className="py-20 lg:py-32 px-6 lg:px-10 max-w-7xl mx-auto">
         {/* Section de présentation : J'utilise mon composant SectionReveal pour animer l'apparition au scroll */}
         <SectionReveal>
-          <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/80 animate-pulse">
               {t("home.story.badge")}
             </span>
             <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] text-balance uppercase">
               {t("home.story.title")}
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl font-medium">
-              {t("home.story.desc")}
-            </p>
           </div>
         </SectionReveal>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mt-16 md:mt-24">
           <SectionReveal delay={0.2}>
-            <div className="overflow-hidden rounded-2xl">
+            <div className="overflow-hidden rounded-3xl shadow-2xl">
               <motion.img
                 src="https://i.pinimg.com/1200x/ec/7c/b1/ec7cb1d813b6354554aaf43fed14cd19.jpg"
-                alt="Récolte des olives"
-                className="w-full h-[400px] lg:h-[500px] object-cover"
+                alt="Notre histoire - Moulin traditionnel"
+                className="w-full h-[450px] lg:h-[600px] object-cover"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6 }}
               />
+            </div>
+          </SectionReveal>
+
+          <SectionReveal delay={0.4}>
+            <div className="flex flex-col space-y-8">
+              <div className="w-20 h-1 bg-primary/30 rounded-full" />
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-medium text-balance">
+                {t("home.story.desc")}
+              </p>
+              <div className="flex items-center gap-4 text-primary font-bold tracking-wider uppercase text-xs">
+                <span className="w-8 h-[1px] bg-primary" />
+                Dépannage du Terroir
+              </div>
             </div>
           </SectionReveal>
         </div>

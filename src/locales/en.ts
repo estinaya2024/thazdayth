@@ -82,6 +82,8 @@ export const en = {
         },
         story: {
             badge: "Our Story",
+            title: "A Heritage of Excellence",
+            desc: "Nestled in the majestic landscapes of Kabylia, our journey began with a passion for quality and a deep respect for nature. Every drop of our oil tells the story of a thousand-year-old land.",
             text1_bold: "Nestled in the majestic landscapes of Kabylia,",
             text1: "our adventure began with a passion for quality and a deep respect for nature. Inspired by generations of olive growers, we set out to produce premium organic olive oil that reflects the rich heritage of this beautiful region.",
             text2: "Every bottle of our olive oil carries the essence of our commitment to sustainable farming practices and the meticulous craftsmanship that defines our approach."
@@ -569,7 +571,13 @@ export const en = {
             type_pressing: "Pressing",
             client: "Client",
             contact: "Contact",
-            quantity: "Quantity"
+            quantity: "Quantity",
+            availability: {
+                calendar_title: "Pickup Availability Management",
+                blocked_dates: "Blocked Dates Log",
+                no_blocked: "No dates are currently blocked.",
+                click_to_block: "Click on a date to block or unblock shop pickups."
+            }
         },
         agenda_pressing: {
             title: "Pressing Agenda",

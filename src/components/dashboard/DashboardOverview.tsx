@@ -48,12 +48,6 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
         icon={Factory} 
         color="text-green-500" 
       />
-      <StatCard 
-        title="Clients" 
-        value={stats.usersCount} 
-        icon={UsersIcon} 
-        color="text-purple-500" 
-      />
 
       <div className="col-span-full mt-6 bg-secondary/20 border border-border rounded-3xl p-8">
         <div className="flex items-center gap-3 mb-6">
