@@ -420,13 +420,13 @@ const AgendaManager: React.FC<AgendaManagerProps> = ({
 
       {view === "availability" && (
         <div className="grid lg:grid-cols-2 gap-10">
-          <div className="bg-card border p-10 rounded-[40px] shadow-sm border-t-8 border-t-primary">
+          <div className="bg-card border border-border/50 p-10 rounded-[2.5rem] shadow-sm">
             <h3 className="text-2xl font-black mb-8 flex items-center gap-3">
               <CalendarIcon className="w-7 h-7 text-primary" />
               {t("dashboard.agenda.availability.calendar_title")}
             </h3>
             <div className="flex flex-col items-center">
-              <div className="p-6 bg-secondary/20 rounded-[2.5rem] border border-border/50 shadow-inner">
+              <div className="p-6 bg-secondary/10 rounded-[2rem] border border-border/30">
                 <Calendar
                   mode="single"
                   selected={calendarDate}
@@ -440,7 +440,7 @@ const AgendaManager: React.FC<AgendaManagerProps> = ({
                   modifiersStyles={{
                     blocked: { backgroundColor: '#ef4444', color: 'white', fontWeight: 'bold', borderRadius: '12px' }
                   }}
-                  className="rounded-md border-none"
+                  className="rounded-xl border-none"
                 />
               </div>
               <div className="mt-8 p-4 bg-primary/5 rounded-2xl border border-primary/10 flex items-start gap-3 max-w-sm">
