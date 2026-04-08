@@ -58,9 +58,7 @@ export const fr = {
             subtotal: "Sous-total",
             shipping_cost: "Frais de livraison",
             categories: {
-                extra_virgin: "Extra Vierge",
-                virgin: "Vierge",
-                third_quality: "3ème Pression"
+                standard: "Qualité TAZDAYTH"
             }
         },
         unit_price: "Prix unitaire",
@@ -175,23 +173,8 @@ export const fr = {
         },
         quality_guide: {
             badge: "Expertise",
-            title: "Comprendre la Qualité",
-            desc: "Tout est une question d'acidité et de fraîcheur. Voici comment nous classons notre or liquide.",
-            extra_virgin: {
-                name: "Extra Vierge",
-                stats: "Acidité < 0.8%",
-                desc: "Le summum de la pureté. Pressée à froid mécaniquement, sans aucun traitement chimique."
-            },
-            virgin: {
-                name: "Vierge",
-                stats: "Acidité < 2.0%",
-                desc: "Un excellent équilibre entre caractère et douceur, parfaite pour la cuisine quotidienne."
-            },
-            lampante: {
-                name: "Courante",
-                stats: "Usage traditionnel",
-                desc: "Une huile de caractère, souvent utilisée dans les plats mijotés de Kabylie."
-            }
+            title: "Notre Engagement Qualité",
+            desc: "Au moulin TAZDAYTH, nous ne produisons qu'une seule qualité d'excellence : une huile pure, pressée à froid, respectant les normes les plus strictes de fraîcheur et d'acidité.",
         },
         heritage: {
             title: "L'Héritage de la Meule",
@@ -340,17 +323,9 @@ export const fr = {
             total: "Total"
         },
         oilTypes: {
-            "extra_virgin": {
-                name: "Extra Vierge",
-                desc: "Première pression à froid, qualité supérieure"
-            },
-            "virgin": {
-                name: "Vierge",
-                desc: "Pressée à froid, bon équilibre qualité-prix"
-            },
-            "third_quality": {
-                name: "Courante",
-                desc: "Huile raffinée, usage quotidien"
+            "standard": {
+                name: "Huile d'Olive Standard",
+                desc: "Qualité pure pressée à froid au moulin TAZDAYTH"
             }
         },
         buy: {
@@ -365,10 +340,7 @@ export const fr = {
             how_it_works: "Comment ça marche ?",
             how_it_works_desc: "Apportez vos olives, nous les pressons pour vous. Payez en argent ou laissez un pourcentage de l'huile produite.",
             service_title: "Réservation de Trituration",
-            service_desc: "Confiez-nous vos olives. Notre équipe vous contactera pour fixer le rendez-vous.",
-            oil_type_wanted: "Type d'huile souhaitée",
-            oil_type_tooltip: "Le type d'huile influence le taux de conversion et le prix du service.",
-            conversion_info: "{{rate}} kg → 1L · {{price}} DA/kg",
+            service_desc: "Confiez-nous vos olives. Notre équipe pressera votre récolte selon nos standards d'excellence.",
             quantity_kg: "Quantité d'olives (kg)",
             quantity_tooltip: "Minimum 50 kg.",
             quantity_placeholder: "Ex : 500",

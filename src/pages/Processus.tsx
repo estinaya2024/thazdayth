@@ -219,46 +219,7 @@ const Processus = () => {
                 </div>
             </section>
 
-            {/* Quality Standards Section */}
-            <section className="py-32 bg-secondary/10 relative">
-                <div className="container px-6 mx-auto">
-                    <SectionReveal>
-                        <div className="text-center max-w-3xl mx-auto mb-20 uppercase">
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-4 block">
-                                {t("process.quality_guide.badge")}
-                            </span>
-                            <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
-                                {t("process.quality_guide.title")}
-                            </h2>
-                            <p className="text-muted-foreground text-lg normal-case">
-                                {t("process.quality_guide.desc")}
-                            </p>
-                        </div>
-                    </SectionReveal>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {["extra_virgin", "virgin", "lampante"].map((key, i) => (
-                            <SectionReveal key={key} delay={i * 0.1}>
-                                <div className="bg-background border border-border/50 p-10 rounded-[2.5rem] h-full flex flex-col hover:border-primary/30 transition-all group relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 p-8 text-primary/5 group-hover:text-primary/10 transition-colors">
-                                        <Award className="w-20 h-20" />
-                                    </div>
-                                    <h4 className="text-2xl font-black mb-2 uppercase tracking-tighter">
-                                        {t(`process.quality_guide.${key}.name`)}
-                                    </h4>
-                                    <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary mb-6">
-                                        <Zap className="w-3 h-3" />
-                                        {t(`process.quality_guide.${key}.stats`)}
-                                    </div>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                        {t(`process.quality_guide.${key}.desc`)}
-                                    </p>
-                                </div>
-                            </SectionReveal>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* Quality Standards Section Removed */}
 
 
             {/* Video Modal */}

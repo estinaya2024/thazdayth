@@ -51,7 +51,6 @@ router.get('/my', auth_1.authenticate, async (req, res) => {
 router.post('/', auth_1.authenticate, [
     // Validation: ensures the data is realistic
     (0, express_validator_1.body)('olive_quantity_kg').isNumeric().withMessage('Quantité invalide'),
-    (0, express_validator_1.body)('oil_quality').isIn(['extra_virgin', 'virgin', 'third_quality']),
     (0, express_validator_1.body)('payment.type').isIn(['money', 'olives']),
 ], async (req, res) => {
     const errors = (0, express_validator_1.validationResult)(req);
@@ -67,7 +66,7 @@ router.post('/', auth_1.authenticate, [
             return;
         }
 
-        const { olive_quantity_kg, oil_quality, yield: yieldData, payment, bring_olives_date, collect_oil_date } = req.body;
+        const { olive_quantity_kg, yield: yieldData, payment, bring_olives_date, collect_oil_date } = req.body;
         // Business Rule: We don't accept small batches under 50kg
         if (olive_quantity_kg < 50) {
             res.status(400).json({ message: 'La quantité minimale est de 50 kg.' });
@@ -78,7 +77,6 @@ router.post('/', auth_1.authenticate, [
         const request = await PressingRequest_1.PressingRequest.create({
             user_id: req.user.id,
             olive_quantity_kg,
-            oil_quality,
             yield: {
                 liters_per_kg: yieldData.liters_per_kg,
                 produced_oil_liters: yieldData.produced_oil_liters,
@@ -100,8 +98,7 @@ router.post('/', auth_1.authenticate, [
                 if (user && user.email) {
                     await (0, sendEmail_1.sendPressingConfirmationEmail)(user.email, {
                         tracking_code,
-                        quantity: olive_quantity_kg,
-                        quality: oil_quality
+                        quantity: olive_quantity_kg
                     });
                 }
             }

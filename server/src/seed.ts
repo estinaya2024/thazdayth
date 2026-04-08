@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { ShippingRate } from './models/ShippingRate';
-import { OilQualitySetting } from './models/OilQualitySetting';
 import { Settings } from './models/Settings';
 import { OliveCategory } from './models/OliveCategory';
 import { PressingService } from './models/PressingService';
@@ -12,11 +11,6 @@ const wilayas = [
     // ... (wilayas array remains same)
 ];
 
-const oilQualities = [
-    { quality_name: 'extra_virgin', liters_per_kg: 5, price_per_liter: 2500, processing_price_per_kg: 40 },
-    { quality_name: 'virgin', liters_per_kg: 4.5, price_per_liter: 1800, processing_price_per_kg: 35 },
-    { quality_name: 'third_quality', liters_per_kg: 4, price_per_liter: 1200, processing_price_per_kg: 30 },
-];
 
 const oliveCategories = [
     { name: 'Récolte Précoce (Vert)', price_per_liter: 1200 },
@@ -37,10 +31,6 @@ async function seed() {
     // ... (insertion logic remains same)
     console.log('✅ Shipping rates seeded');
 
-    // Oil quality settings
-    await OilQualitySetting.deleteMany({});
-    await OilQualitySetting.insertMany(oilQualities);
-    console.log('✅ Oil quality settings seeded');
 
     // Olive Categories (NEW)
     await OliveCategory.deleteMany({});

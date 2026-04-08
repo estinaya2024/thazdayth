@@ -21,7 +21,6 @@ import orderRoutes from './routes/orders';
 import pressingRoutes from './routes/pressing';
 import settingsRoutes from './routes/settings';
 import shippingRatesRoutes from './routes/shippingRates';
-import oilQualityRoutes from './routes/oilQuality';
 import productRoutes from './routes/products';
 import notificationRoutes from './routes/notifications';
 import commentRoutes from './routes/comments';
@@ -97,7 +96,6 @@ app.use('/api/orders', orderRoutes); // Shopping orders
 app.use('/api/pressing', pressingRoutes); // Olive pressing requests
 app.use('/api/settings', settingsRoutes); // General site settings
 app.use('/api/shipping-rates', shippingRatesRoutes); // Delivery prices
-app.use('/api/oil-quality', oilQualityRoutes); // Oil types and yields
 app.use('/api/products', productRoutes); // Store products (Olive oil bottles)
 app.use('/api/notifications', notificationRoutes); // User alerts
 app.use('/api/comments', commentRoutes); // User reviews/feedback

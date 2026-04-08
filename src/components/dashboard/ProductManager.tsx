@@ -35,7 +35,6 @@ const ProductManager: React.FC<ProductManagerProps> = ({
   const [editingProduct, setEditingProduct] = useState<any>(null);
   const [productForm, setProductForm] = useState({
     name: "",
-    category: "extra_virgin",
     price_per_liter: 0,
     stock_liters: 0
   });
@@ -53,7 +52,7 @@ const ProductManager: React.FC<ProductManagerProps> = ({
       toast.success(editingProduct ? "Produit mis à jour !" : "Produit créé !");
       setShowProductModal(false);
       setEditingProduct(null);
-      setProductForm({ name: "", category: "extra_virgin", price_per_liter: 0, stock_liters: 0 });
+      setProductForm({ name: "", price_per_liter: 0, stock_liters: 0 });
       onRefresh();
     } catch (err: any) {}
   };
@@ -96,16 +95,7 @@ const ProductManager: React.FC<ProductManagerProps> = ({
     } catch (err: any) {}
   };
 
-  const updateCategory = async (id: string, newCategory: string) => {
-    try {
-      await request(`/prices/pressing/${id}`, {
-        method: 'PATCH',
-        body: { category: newCategory }
-      });
-      toast.success("Catégorie mise à jour !");
-      onRefresh();
-    } catch (err: any) {}
-  };
+  // updateCategory function removed as categories are deprecated
 
   const updateOliveStock = async (id: string, newStock: number) => {
     try {
@@ -168,7 +158,6 @@ const ProductManager: React.FC<ProductManagerProps> = ({
     setEditingProduct(product);
     setProductForm({
       name: product.name,
-      category: product.category,
       price_per_liter: product.price_per_liter,
       stock_liters: product.stock_liters
     });
@@ -190,7 +179,7 @@ const ProductManager: React.FC<ProductManagerProps> = ({
               <button
                 onClick={() => {
                   setEditingProduct(null);
-                  setProductForm({ name: "", category: "extra_virgin", price_per_liter: 0, stock_liters: 0 });
+                  setProductForm({ name: "", price_per_liter: 0, stock_liters: 0 });
                   setShowProductModal(true);
                 }}
                 className="flex items-center gap-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-full hover:opacity-90 transition-opacity font-bold text-xs shadow-sm"
@@ -282,7 +271,7 @@ const ProductManager: React.FC<ProductManagerProps> = ({
                     </div>
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-border/50 relative z-10">
-                    <span className="text-xs font-medium text-muted-foreground">{p.category.replace('_', ' ')} (Produit)</span>
+                    <span className="text-xs font-medium text-muted-foreground">Standard (Produit)</span>
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1">
                         <input
@@ -361,27 +350,7 @@ const ProductManager: React.FC<ProductManagerProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div className="pt-3 border-t border-border/50">
-                    <label className="text-[10px] font-bold text-muted-foreground uppercase mb-2 block">Catégorie de qualité d'huile cible</label>
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        { id: 'extra_virgin', label: 'Extra Vierge' },
-                        { id: 'virgin', label: 'Vierge' },
-                        { id: 'third_quality', label: 'Courante' }
-                      ].map(cat => (
-                        <button
-                          key={cat.id}
-                          onClick={() => updateCategory(svc._id, cat.id)}
-                          className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-tighter transition-all border ${svc.category === cat.id
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-secondary text-muted-foreground border-border hover:border-primary/40"
-                            }`}
-                        >
-                          {cat.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  {/* Target quality category buttons removed */}
                 </div>
               ))}
             </div>
@@ -433,18 +402,7 @@ const ProductManager: React.FC<ProductManagerProps> = ({
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground px-1">Catégorie</label>
-                  <select
-                    value={productForm.category}
-                    onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
-                    className="w-full bg-background border border-border rounded-2xl px-5 py-4 outline-none focus:ring-2 focus:ring-primary/20 transition-all appearance-none"
-                  >
-                    <option value="extra_virgin">Extra Vierge</option>
-                    <option value="virgin">Vierge</option>
-                    <option value="third_quality">3ème Pression</option>
-                  </select>
-                </div>
+              {/* Category selector removed */}
                 <div className="space-y-2">
                    <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground px-1">Prix (DA/L)</label>
                    <input

@@ -16,6 +16,7 @@ export interface AuthUser {
     phone: string;
     role: 'customer' | 'owner';
     is_subscribed: boolean;
+    is_blacklisted: boolean;
 }
 
 interface AuthContextType {

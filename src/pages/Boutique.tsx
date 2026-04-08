@@ -46,7 +46,6 @@ interface CartItem {
 interface Product {
   _id: string;
   name: string;
-  category: 'extra_virgin' | 'virgin' | 'third_quality';
   price_per_liter: number;
   stock_liters: number;
   is_available: boolean;
@@ -185,7 +184,6 @@ const Boutique = () => {
       setPressOilType({
         id: svc._id,
         name: svc.name,
-        quality_name: svc.category,
         conversionRate: 1 / (svc.yield_per_kg || 0.2), // Store conversion rate (kg/L) for UI consistency if needed
         processingPricePerKg: svc.fee,
         description: t("boutique.press.service_desc"),
@@ -348,7 +346,6 @@ const Boutique = () => {
         },
         body: JSON.stringify({
           olive_quantity_kg: oliveKgNum,
-          oil_quality: pressOilType.quality_name,
           yield: {
             liters_per_kg: (pressOilType as any).yieldPerKg || (1 / (pressOilType.conversionRate || 5)),
             produced_oil_liters: pressCalc?.expectedOil || 0,
@@ -681,6 +678,24 @@ const Boutique = () => {
                       </div>
                     </div>
 
+                    {user?.is_blacklisted && (
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="p-6 bg-red-500/5 border border-red-500/10 rounded-2xl flex items-start gap-4 mb-6 shadow-sm shadow-red-500/5 group"
+                      >
+                        <div className="p-3 bg-red-500/10 rounded-xl group-hover:scale-110 transition-transform duration-500">
+                           <AlertCircle className="w-6 h-6 text-red-500 shrink-0" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-bold text-red-600 mb-1 tracking-tight">Accès Restreint : Compte Thazdayth</p>
+                          <p className="text-[11px] text-red-600/60 leading-relaxed font-medium">
+                            Votre compte a été temporairement suspendu par l'administration. Les commandes et les demandes de trituration sont indisponibles pour le moment. Veuillez contacter le support pour plus d'informations.
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+
                     {deliveryMethod === "delivery" ? (
                       <div>
                         <label className="text-xs font-medium text-muted-foreground block mb-1.5">{t("boutique.form.wilaya")}</label>
@@ -748,8 +763,18 @@ const Boutique = () => {
                       </div>
                     )}
 
-                    <MagneticButton className={`w-full bg-primary text-primary-foreground py-3.5 rounded-full text-sm font-medium transition-all duration-300 ${submitting ? "opacity-60 pointer-events-none" : "hover:bg-primary/90"}`}>
-                      {submitting ? "Envoi en cours..." : "Confirmer la commande"}
+                    <MagneticButton 
+                      disabled={submitting || user?.is_blacklisted}
+                      className={cn(
+                        "w-full py-3.5 rounded-full text-sm font-medium transition-all duration-300",
+                        user?.is_blacklisted 
+                          ? "bg-muted text-muted-foreground cursor-not-allowed border border-border" 
+                          : submitting 
+                            ? "bg-primary/60 opacity-60 pointer-events-none" 
+                            : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
+                      )}
+                    >
+                      {submitting ? "Envoi en cours..." : user?.is_blacklisted ? "Action Non Autorisée" : "Confirmer la commande"}
                     </MagneticButton>
                   </form>
                 </div>
@@ -930,8 +955,18 @@ const Boutique = () => {
                       <input value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })} className="w-full bg-secondary rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-shadow" placeholder="0555 123 456" />
                     </div>
 
-                    <MagneticButton className={`w-full bg-primary text-primary-foreground py-3.5 rounded-full text-sm font-medium transition-all duration-300 ${submitting ? "opacity-60 pointer-events-none" : "hover:bg-primary/90"}`}>
-                      {submitting ? t("boutique.form.submitting") : t("boutique.form.submit_press")}
+                    <MagneticButton 
+                      disabled={submitting || user?.is_blacklisted}
+                      className={cn(
+                        "w-full py-3.5 rounded-full text-sm font-medium transition-all duration-300",
+                        user?.is_blacklisted 
+                          ? "bg-muted text-muted-foreground cursor-not-allowed border border-border" 
+                          : submitting 
+                            ? "bg-primary/60 opacity-60 pointer-events-none" 
+                            : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
+                      )}
+                    >
+                      {submitting ? t("boutique.form.submitting") : user?.is_blacklisted ? "Action Non Autorisée" : t("boutique.form.submit_press")}
                     </MagneticButton>
                     <p className="text-[10px] text-center text-muted-foreground italic mt-3 px-4">
                       {t("boutique.press.notice")}

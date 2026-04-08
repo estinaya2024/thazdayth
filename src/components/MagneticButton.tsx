@@ -5,9 +5,10 @@ interface MagneticButtonProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
-const MagneticButton = ({ children, className = "", onClick }: MagneticButtonProps) => {
+const MagneticButton = ({ children, className = "", onClick, disabled = false }: MagneticButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -32,8 +33,9 @@ const MagneticButton = ({ children, className = "", onClick }: MagneticButtonPro
       style={{ x: springX, y: springY }}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       className={className}
+      disabled={disabled}
     >
       {children}
     </motion.button>

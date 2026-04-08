@@ -65,12 +65,9 @@ export const wilayas: Wilaya[] = [
   { code: 58, name: "In Guezzam", shipping: 1500 },
 ];
 
-import { OilQualityEnum } from "@/types/models";
-
 export interface OilType {
   id: string;
   name: string;
-  quality_name: OilQualityEnum; // Added for DB matching
   description: string;
   pricePerLiter: number;
   conversionRate: number; // kg olives per 1 liter
@@ -79,31 +76,12 @@ export interface OilType {
 
 export const oilTypes: OilType[] = [
   {
-    id: "extra-vierge",
-    name: "Extra Vierge",
-    quality_name: "extra_virgin",
-    description: "Première pression à froid, qualité supérieure",
-    pricePerLiter: 2500,
+    id: "standard",
+    name: "Huile d'Olive Standard",
+    description: "Qualité pure pressée à froid au moulin TAZDAYTH",
+    pricePerLiter: 2200,
     conversionRate: 5,
-    processingPricePerKg: 40,
-  },
-  {
-    id: "vierge",
-    name: "Vierge",
-    quality_name: "virgin",
-    description: "Pressée à froid, bon équilibre qualité-prix",
-    pricePerLiter: 1800,
-    conversionRate: 4.5,
     processingPricePerKg: 35,
-  },
-  {
-    id: "courante",
-    name: "Courante",
-    quality_name: "third_quality",
-    description: "Huile raffinée, usage quotidien",
-    pricePerLiter: 1200,
-    conversionRate: 4,
-    processingPricePerKg: 30,
   },
 ];
 

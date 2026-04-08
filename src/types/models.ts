@@ -3,7 +3,6 @@
 export type UserRole = 'customer' | 'owner';
 export type ShippingMethod = 'delivery' | 'pickup';
 export type OrderStatus = 'pending' | 'confirmed' | 'completed' | 'cancelled';
-export type OilQualityEnum = 'extra_virgin' | 'virgin' | 'third_quality';
 export type PaymentMethod = 'money' | 'olives';
 export type PressingStatus = 'pending' | 'accepted' | 'rejected' | 'completed';
 
@@ -24,11 +23,6 @@ export interface User extends BaseEntity {
 export interface ShippingRate extends BaseEntity {
     wilaya: string;
     price: number;
-}
-
-export interface OilQualitySetting extends BaseEntity {
-    quality_name: OilQualityEnum;
-    liters_per_kg: number;
 }
 
 export interface GlobalSettings extends BaseEntity {
@@ -56,7 +50,6 @@ export interface Order extends BaseEntity {
 export interface PressingRequest extends BaseEntity {
     user_id: string; // Ref: Users
     olive_quantity_kg: number;
-    oil_quality: OilQualityEnum;
     yield: {
         liters_per_kg: number; // Snapshot
         produced_oil_liters: number;

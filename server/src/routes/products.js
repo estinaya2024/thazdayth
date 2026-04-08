@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
 // POST /api/products - Create a new product (Admin only)
 router.post('/', auth_1.authenticate, auth_1.ownerOnly, [
     (0, express_validator_1.body)('name').notEmpty().withMessage('Le nom est requis'),
-    (0, express_validator_1.body)('category').isIn(['extra_virgin', 'virgin', 'third_quality']).withMessage('Catégorie invalide'),
     (0, express_validator_1.body)('price_per_liter').isNumeric().withMessage('Le prix doit être un nombre'),
     (0, express_validator_1.body)('stock_liters').isNumeric().withMessage('Le stock doit être un nombre'),
 ], async (req, res) => {

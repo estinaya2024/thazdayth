@@ -3,7 +3,6 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IPressingRequest extends Document {
     user_id: mongoose.Types.ObjectId;
     olive_quantity_kg: number;
-    oil_quality: 'extra_virgin' | 'virgin' | 'third_quality';
     yield: {
         liters_per_kg: number;
         produced_oil_liters: number;
@@ -26,11 +25,6 @@ export interface IPressingRequest extends Document {
 const PressingRequestSchema = new Schema<IPressingRequest>({
     user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     olive_quantity_kg: { type: Number, required: true },
-    oil_quality: {
-        type: String,
-        enum: ['extra_virgin', 'virgin', 'third_quality'],
-        required: true,
-    },
     yield: {
         liters_per_kg: { type: Number, required: true },
         produced_oil_liters: { type: Number, required: true },

@@ -87,7 +87,6 @@ router.get('/pressing', async (req, res) => {
 // POST /api/prices/pressing - Owner Only
 router.post('/pressing', auth_1.authenticate, auth_1.ownerOnly, [
     (0, express_validator_1.body)('name').notEmpty().withMessage('Le nom est requis'),
-    (0, express_validator_1.body)('category').isIn(['extra_virgin', 'virgin', 'third_quality']).withMessage('Catégorie invalide'),
     (0, express_validator_1.body)('fee').isNumeric().withMessage('Le frais doit être un nombre'),
     (0, express_validator_1.body)('yield_per_kg').optional().isNumeric().withMessage('Le rendement doit être un nombre'),
 ], async (req, res) => {
@@ -111,7 +110,6 @@ router.post('/pressing', auth_1.authenticate, auth_1.ownerOnly, [
 // PATCH /api/prices/pressing/:id - Owner Only (Update Fee)
 router.patch('/pressing/:id', auth_1.authenticate, auth_1.ownerOnly, [
     (0, express_validator_1.body)('name').optional().notEmpty().withMessage('Le nom ne peut pas être vide'),
-    (0, express_validator_1.body)('category').optional().isIn(['extra_virgin', 'virgin', 'third_quality']).withMessage('Catégorie invalide'),
     (0, express_validator_1.body)('fee').optional().isNumeric().withMessage('Le frais doit être un nombre'),
     (0, express_validator_1.body)('yield_per_kg').optional().isNumeric().withMessage('Le rendement doit être un nombre'),
     (0, express_validator_1.body)('active').optional().isBoolean().withMessage('Actif doit être un booléen'),
