@@ -342,9 +342,14 @@ const Suivi = () => {
                                                         <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">{t("suivi.order_num")}{order.tracking_code || order._id?.slice(-6).toUpperCase()}</p>
                                                         <h3 className="font-bold text-lg">{order.created_at ? new Date(order.created_at).toLocaleDateString() : "---"}</h3>
                                                     </div>
-                                                    <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full border border-foreground/5">
-                                                        {getStatusIcon(order.status)}
-                                                        <span className="text-sm font-semibold">{getStatusLabel(order.status)}</span>
+                                                    <div className="flex items-center gap-3">
+                                                        <Link to="/boutique" className="hidden sm:flex text-xs font-semibold px-3 py-1.5 rounded-lg border border-primary/20 text-primary hover:bg-primary/5 transition-colors">
+                                                            Commander à nouveau
+                                                        </Link>
+                                                        <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full border border-foreground/5">
+                                                            {getStatusIcon(order.status)}
+                                                            <span className="text-sm font-semibold">{getStatusLabel(order.status)}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -460,9 +465,14 @@ const Suivi = () => {
                                                         <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">{t("suivi.pressing_num")}{req.tracking_code || req._id?.slice(-6).toUpperCase()}</p>
                                                         <h3 className="font-bold text-lg">{req.created_at ? new Date(req.created_at).toLocaleDateString() : "---"}</h3>
                                                     </div>
-                                                    <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full border border-foreground/5">
-                                                        {getStatusIcon(req.status)}
-                                                        <span className="text-sm font-semibold">{getStatusLabel(req.status)}</span>
+                                                    <div className="flex items-center gap-3">
+                                                        <button onClick={() => navigate("/boutique")} className="hidden sm:flex text-xs font-semibold px-3 py-1.5 rounded-lg border border-primary/20 text-primary hover:bg-primary/5 transition-colors">
+                                                            Nouveau pressage
+                                                        </button>
+                                                        <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full border border-foreground/5">
+                                                            {getStatusIcon(req.status)}
+                                                            <span className="text-sm font-semibold">{getStatusLabel(req.status)}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
 

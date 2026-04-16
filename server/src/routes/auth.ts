@@ -107,8 +107,8 @@ router.post(
             // check for admin promotion if email matches but role is still customer
             const isAdmin = email.toLowerCase() === (process.env.ADMIN_EMAIL || '').toLowerCase();
             if (isAdmin && user.role !== 'owner') {
+                await User.updateOne({ _id: user._id }, { $set: { role: 'owner' } });
                 user.role = 'owner';
-                await user.save();
                 console.log(`[AUTH] Promoted existing user ${email} to owner role`);
             }
 
@@ -216,9 +216,10 @@ router.post(
                 // NEW: Send Welcome Email for Google Users
                 sendWelcomeEmail(email, user.first_name).catch(err => console.error('[AUTH] Google Welcome email fail:', err));
             } else if (isAdmin && user.role !== 'owner') {
-                // Promote existing Google user if they are now in the admin list
+                // Promote existing Google user without triggering full document validation
+                // in case it's a legacy document missing a required 'password'
+                await User.updateOne({ _id: user._id }, { $set: { role: 'owner' } });
                 user.role = 'owner';
-                await user.save();
                 console.log(`[AUTH] Promoted existing Google user ${email} to owner role`);
             }
 

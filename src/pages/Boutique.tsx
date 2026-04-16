@@ -393,7 +393,7 @@ const Boutique = () => {
             </p>
             <div className="flex flex-col gap-3 items-center">
               <Link
-                to="/suivi"
+                to={mode === "buy" ? "/suivi?tab=orders" : "/suivi?tab=pressing"}
                 className="bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-all"
               >
                 {t("nav.tracking")}
